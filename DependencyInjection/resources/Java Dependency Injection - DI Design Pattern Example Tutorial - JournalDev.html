@@ -1,0 +1,2600 @@
+<!DOCTYPE html>
+<!-- saved from url=(0089)https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial -->
+<html lang="en-US" prefix="og: http://ogp.me/ns#"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/apstag.js.download"></script><script type="text/javascript">!function(a9,a,p,s,t,A,g){if(a[a9])return;function q(c,r){a[a9]._Q.push([c,r])}a[a9]={init:function(){q("i",arguments)},fetchBids:function(){q("f",arguments)},setDisplayBids:function(){},targetingKeys:function(){return[]},_Q:[]};A=p.createElement(s);A.async=!0;A.src=t;g=p.getElementsByTagName(s)[0];g.parentNode.insertBefore(A,g)}("apstag",window,document,"script","//c.amazon-adsystem.com/aax2/apstag.js");</script><script type="text/javascript" async="" src="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/prebid_v1.js.download"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev</title>
+
+<!-- This site is optimized with the Yoast SEO plugin v9.0.3 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="Dependency Injection in Java - What is Dependency Injection Design pattern in Java. Java Dependency Injection Example Tutorial, Benefits or DI and Drawbacks">
+<link rel="canonical" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev">
+<meta property="og:description" content="Dependency Injection in Java - What is Dependency Injection Design pattern in Java. Java Dependency Injection Example Tutorial, Benefits or DI and Drawbacks">
+<meta property="og:url" content="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial">
+<meta property="og:site_name" content="JournalDev">
+<meta property="article:author" content="https://www.facebook.com/PankajKumarJaiswal">
+<meta property="article:section" content="Design Patterns">
+<meta property="article:published_time" content="2013-12-14T14:36:21+00:00">
+<meta property="article:modified_time" content="2016-07-24T15:01:13+00:00">
+<meta property="og:updated_time" content="2016-07-24T15:01:13+00:00">
+<meta property="og:image" content="https://cdn.journaldev.com/wp-content/uploads/2013/12/java-dependency-injection-example-tutorial.jpg">
+<meta property="og:image:secure_url" content="https://cdn.journaldev.com/wp-content/uploads/2013/12/java-dependency-injection-example-tutorial.jpg">
+<meta property="og:image:width" content="560">
+<meta property="og:image:height" content="315">
+<meta property="og:image:alt" content="Java Dependency Injection, Dependency Injection in Java Example Tutorial">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:description" content="Dependency Injection in Java - What is Dependency Injection Design pattern in Java. Java Dependency Injection Example Tutorial, Benefits or DI and Drawbacks">
+<meta name="twitter:title" content="Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev">
+<meta name="twitter:image" content="https://cdn.journaldev.com/wp-content/uploads/2013/12/java-dependency-injection-example-tutorial.jpg">
+<meta name="twitter:creator" content="@JournalDev">
+<script async="" type="text/javascript" src="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/gpt.js.download"></script><script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Person","url":"https:\/\/www.journaldev.com\/","sameAs":[],"@id":"#person","name":"Pankaj Kumar"}</script>
+<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/www.journaldev.com\/","name":"Home"}},{"@type":"ListItem","position":2,"item":{"@id":"https:\/\/www.journaldev.com\/java","name":"Java"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/www.journaldev.com\/java\/design-patterns","name":"Design Patterns"}},{"@type":"ListItem","position":4,"item":{"@id":"https:\/\/www.journaldev.com\/2394\/java-dependency-injection-design-pattern-example-tutorial","name":"Java Dependency Injection &#8211; DI Design Pattern Example Tutorial"}}]}</script>
+<!-- / Yoast SEO plugin. -->
+
+<link rel="amphtml" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial/amp"><link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="JournalDev » Feed" href="https://www.journaldev.com/feed">
+<link rel="alternate" type="application/rss+xml" title="JournalDev » Comments Feed" href="https://www.journaldev.com/comments/feed">
+<link rel="alternate" type="application/rss+xml" title="JournalDev » Java Dependency Injection – DI Design Pattern Example Tutorial Comments Feed" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial/feed">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/cdn.journaldev.com\/wp-includes\/js\/wp-emoji-release.min.js"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55358,56760,9792,65039],[55358,56760,8203,9792,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/wp-emoji-release.min.js.download" type="text/javascript" defer=""></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="news-pro-theme-css" href="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="toc-screen-css" href="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/screen.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="dashicons-css" href="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/dashicons.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="google-fonts-css" href="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/css" type="text/css" media="all">
+<link rel="stylesheet" id="wpdreams-asl-basic-css" href="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/style.basic.css" type="text/css" media="all">
+<link rel="stylesheet" id="wpdreams-ajaxsearchlite-css" href="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/style-simple-red.css" type="text/css" media="all">
+<script type="text/javascript" src="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/jquery.js.download"></script>
+<script type="text/javascript" src="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/jquery-migrate.min.js.download"></script>
+<!--[if lt IE 9]>
+<script type='text/javascript' src='https://cdn.journaldev.com/wp-content/themes/genesis/lib/js/html5shiv.min.js'></script>
+<![endif]-->
+<script type="text/javascript" src="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/responsive-menu.js.download"></script>
+<link rel="https://api.w.org/" href="https://www.journaldev.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.journaldev.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.journaldev.com/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 4.9.8">
+<link rel="shortlink" href="https://www.journaldev.com/?p=2394">
+<link rel="alternate" type="application/json+oembed" href="https://www.journaldev.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.journaldev.com%2F2394%2Fjava-dependency-injection-design-pattern-example-tutorial">
+<link rel="alternate" type="text/xml+oembed" href="https://www.journaldev.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.journaldev.com%2F2394%2Fjava-dependency-injection-design-pattern-example-tutorial&amp;format=xml">
+
+<link rel="icon" type="image/png" href="https://www.journaldev.com/fav.png">
+<script type="text/javascript" src="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/2273.js.download"></script><style type="text/css">.waldo-sticky-footer{position: fixed; width: 100%; bottom: 0px; left: 0px; text-align: center; z-index: 9995;}.waldo-sticky-footer iframe {margin-left: auto;margin-right: auto;}.waldo-sticky-sidebar{position: fixed; width: 100%; top: 10px;z-index: 90}.waldo-overlay{position: fixed;height: 100%;width: 100%;top: 0;left: 0;z-index: 105;background: rgba(0,0,0,0.7);}#waldo-counter {position: absolute;bottom: 0;right: 0;color: #fff;font-size: 30px;padding: 15px;}.waldo-bfleft {position: fixed; left: 0; top: 10px;z-index:101;}.waldo-bfright {position: fixed; right: 0; top: 10px;z-index:101;}#waldo-close-button a {border: 1px solid rgba(0,0,0,.35);padding: 3px;font-size: 12px;color: #fff;font-weight: bold;background-color: #777;}</style><script type="text/javascript">googletag.cmd.push(function() {gptAdSlots[2281] = googletag.defineSlot('/124067137/journaldev728x90FL_2', [[728, 90], [970, 90], [970, 250], [320, 50]], 'waldo-tag-2281').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[728, 90], [970, 90], [970, 250]]).addSize([768, 0], [[320, 50]]).addSize([0, 0], [[320, 50]]).build()).addService(googletag.pubads()).setCollapseEmptyDiv(true,true);gptAdSlots[3019] = googletag.defineSlot('/8491498/journaldev728x90FL_2_Universal_Passback_5bc80844d6c1b', [[728, 90], [320, 50]], 'waldo-tag-3019').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[728, 90]]).addSize([768, 0], [[320, 50]]).addSize([0, 0], [[320, 50]]).build()).addService(googletag.pubads());gptAdSlots[2282] = googletag.defineSlot('/124067137/journaldev300x250FL_1', [[300, 250], [300, 600], [160, 600]], 'waldo-tag-2282').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[300, 250], [300, 600], [160, 600]]).addSize([768, 0], [[300, 250], [300, 600], [160, 600]]).addSize([0, 0], [[300, 250], [300, 600], [160, 600]]).build()).addService(googletag.pubads()).setCollapseEmptyDiv(true,true);gptAdSlots[3020] = googletag.defineSlot('/8491498/journaldev300x250FL_1_Universal_Passback_5bc80847aa4d0', [[300, 250], [160, 600]], 'waldo-tag-3020').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[300, 250]]).addSize([768, 0], [[160, 600]]).addSize([0, 0], [[160, 600]]).build()).addService(googletag.pubads());gptAdSlots[2283] = googletag.defineSlot('/124067137/journaldev300x250FL_2', [[300, 250], [300, 600], [160, 600]], 'waldo-tag-2283').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[300, 250], [300, 600], [160, 600]]).addSize([768, 0], [[300, 250], [300, 600], [160, 600]]).addSize([0, 0], [[300, 250], [300, 600], [160, 600]]).build()).addService(googletag.pubads()).setCollapseEmptyDiv(true,true);gptAdSlots[3021] = googletag.defineSlot('/8491498/journaldev300x250FL_2_Universal_Passback_5bc8084a91584', [[300, 250], [160, 600]], 'waldo-tag-3021').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[300, 250]]).addSize([768, 0], [[160, 600]]).addSize([0, 0], [[160, 600]]).build()).addService(googletag.pubads());gptAdSlots[2280] = googletag.defineSlot('/124067137/journaldev728x90FL_1', [[728, 90], [320, 50]], 'waldo-tag-2280').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[728, 90]]).addSize([768, 0], [[320, 50]]).addSize([0, 0], [[320, 50]]).build()).addService(googletag.pubads()).setCollapseEmptyDiv(true,true);gptAdSlots[3018] = googletag.defineSlot('/8491498/journaldev728x90FL_1_Universal_Passback_5bc80841e910f', [[728, 90], [320, 50]], 'waldo-tag-3018').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[728, 90]]).addSize([768, 0], [[320, 50]]).addSize([0, 0], [[320, 50]]).build()).addService(googletag.pubads());gptAdSlots[2397] = googletag.defineSlot('/124067137/journaldev728x90FS_1', [[728, 90], [300, 250], [320, 50]], 'waldo-tag-2397').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[728, 90], [300, 250]]).addSize([768, 0], [[300, 250], [320, 50]]).addSize([0, 0], [[320, 50]]).build()).addService(googletag.pubads()).setCollapseEmptyDiv(true,true);gptAdSlots[3069] = googletag.defineSlot('/8491498/journaldev728x90FS_1_Universal_Passback_5bc808c67e3e0', [[728, 90], [320, 50]], 'waldo-tag-3069').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[728, 90]]).addSize([768, 0], [[320, 50]]).addSize([0, 0], [[320, 50]]).build()).addService(googletag.pubads());googletag.pubads().enableSingleRequest();googletag.enableServices();googletag.pubads().addEventListener('impressionViewable', function(event) {hb_refresh(event); hb_sroll_pause(event);});googletag.pubads().addEventListener('slotRenderEnded', function(event) {waldoAddCloseBtn(event); waldoPassbackInit(event);waldoInterstitialInit(event);})});</script>
+
+<script async="async" src="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/gpt.js.download"></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+
+<script>
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/8491498/journaldev_video', [[300, 291], [630, 430]], 'div-gpt-ad-1539114023134-0').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.pubads().collapseEmptyDivs();
+    googletag.enableServices();
+  });
+</script><style type="text/css">.site-title a { background: url(https://cdn.journaldev.com/wp-content/uploads/2018/07/logo1.svg) no-repeat !important; }</style>
+                <link href="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/css(1)" rel="stylesheet" type="text/css">
+                      <meta name="onesignal" content="wordpress-plugin">
+          <link rel="manifest" href="https://www.journaldev.com/wp-content/plugins/onesignal-free-web-push-notifications/sdk_files/manifest.json.php?gcm_sender_id=">
+          <script src="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/OneSignalSDK.js.download" async=""></script>    <script>
+
+      window.OneSignal = window.OneSignal || [];
+
+      OneSignal.push( function() {
+        OneSignal.SERVICE_WORKER_UPDATER_PATH = "OneSignalSDKUpdaterWorker.js.php";
+        OneSignal.SERVICE_WORKER_PATH = "OneSignalSDKWorker.js.php";
+        OneSignal.SERVICE_WORKER_PARAM = { scope: '/' };
+
+        OneSignal.setDefaultNotificationUrl("https://www.journaldev.com");
+        var oneSignal_options = {};
+        window._oneSignalInitOptions = oneSignal_options;
+
+        oneSignal_options['wordpress'] = true;
+oneSignal_options['appId'] = 'bab8c5d5-918b-46f8-8634-2efa6c23e327';
+oneSignal_options['autoRegister'] = true;
+oneSignal_options['welcomeNotification'] = { };
+oneSignal_options['welcomeNotification']['title'] = "";
+oneSignal_options['welcomeNotification']['message'] = "";
+oneSignal_options['path'] = "https://www.journaldev.com/wp-content/plugins/onesignal-free-web-push-notifications/sdk_files/";
+oneSignal_options['safari_web_id'] = "web.onesignal.auto.0818a4e7-118f-4fc1-b0e2-07892e811a2a";
+oneSignal_options['promptOptions'] = { };
+oneSignal_options['notifyButton'] = { };
+oneSignal_options['notifyButton']['enable'] = true;
+oneSignal_options['notifyButton']['position'] = 'bottom-left';
+oneSignal_options['notifyButton']['theme'] = 'default';
+oneSignal_options['notifyButton']['size'] = 'medium';
+oneSignal_options['notifyButton']['prenotify'] = true;
+oneSignal_options['notifyButton']['displayPredicate'] = function() {
+              return OneSignal.isPushNotificationsEnabled()
+                      .then(function(isPushEnabled) {
+                          return !isPushEnabled;
+                      });
+            };
+oneSignal_options['notifyButton']['showCredit'] = false;
+oneSignal_options['notifyButton']['text'] = {};
+oneSignal_options['notifyButton']['text']['message.prenotify'] = 'Stay Updated with us! Subscribe to our free notifications.';
+oneSignal_options['notifyButton']['text']['tip.state.subscribed'] = 'Thanks for subscribing!';
+oneSignal_options['notifyButton']['text']['message.action.subscribed'] = 'Thanks for subscribing!';
+              OneSignal.init(window._oneSignalInitOptions);
+                    });
+
+      function documentInitOneSignal() {
+        var oneSignal_elements = document.getElementsByClassName("OneSignal-prompt");
+
+        var oneSignalLinkClickHandler = function(event) { OneSignal.push(['registerForPushNotifications']); event.preventDefault(); };        for(var i = 0; i < oneSignal_elements.length; i++)
+          oneSignal_elements[i].addEventListener('click', oneSignalLinkClickHandler, false);
+      }
+
+      if (document.readyState === 'complete') {
+           documentInitOneSignal();
+      }
+      else {
+           window.addEventListener("load", function(event){
+               documentInitOneSignal();
+          });
+      }
+    </script>
+
+                <style type="text/css">
+                    <!--
+                    
+            @font-face {
+                font-family: 'aslsicons2';
+                src: url('https://cdn.journaldev.com/wp-content/plugins/ajax-search-lite/css/fonts/icons2.eot');
+                src: url('https://cdn.journaldev.com/wp-content/plugins/ajax-search-lite/css/fonts/icons2.eot?#iefix') format('embedded-opentype'),
+                     url('https://cdn.journaldev.com/wp-content/plugins/ajax-search-lite/css/fonts/icons2.woff2') format('woff2'),
+                     url('https://cdn.journaldev.com/wp-content/plugins/ajax-search-lite/css/fonts/icons2.woff') format('woff'),
+                     url('https://cdn.journaldev.com/wp-content/plugins/ajax-search-lite/css/fonts/icons2.ttf') format('truetype'),
+                     url('https://cdn.journaldev.com/wp-content/plugins/ajax-search-lite/css/fonts/icons2.svg#icons') format('svg');
+                font-weight: normal;
+                font-style: normal;
+            }
+            div[id*='ajaxsearchlitesettings'].searchsettings .asl_option_inner label {
+                font-size: 0px !important;
+                color: rgba(0, 0, 0, 0);
+            }
+            div[id*='ajaxsearchlitesettings'].searchsettings .asl_option_inner label:after {
+                font-size: 11px !important;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 1;
+            }
+            div[id*='ajaxsearchlite'].wpdreams_asl_container {
+                width: 100%;
+                margin: 0px 0px 0px 0px;
+            }
+            div[id*='ajaxsearchliteres'].wpdreams_asl_results div.resdrg span.highlighted {
+                font-weight: bold;
+                color: rgba(217, 49, 43, 1);
+                background-color: rgba(238, 238, 238, 1);
+            }
+            div[id*='ajaxsearchliteres'].wpdreams_asl_results .results div.asl_image {
+                width: 70px;
+                height: 70px;
+            }
+            div.asl_r .results {
+                max-height: none;
+            }
+                                -->
+                </style>
+                            <script type="text/javascript">
+                if ( typeof _ASL !== "undefined" && _ASL !== null && typeof _ASL.initialize !== "undefined" )
+                    _ASL.initialize();
+            </script>
+            <link rel="icon" href="https://cdn.journaldev.com/wp-content/uploads/2015/08/jd-site-img-150x150.png" sizes="32x32">
+<link rel="icon" href="https://cdn.journaldev.com/wp-content/uploads/2015/08/jd-site-img.png" sizes="192x192">
+<link rel="apple-touch-icon-precomposed" href="https://cdn.journaldev.com/wp-content/uploads/2015/08/jd-site-img.png">
+<meta name="msapplication-TileImage" content="https://cdn.journaldev.com/wp-content/uploads/2015/08/jd-site-img.png">
+		<style type="text/css" id="wp-custom-css">
+			.scriptlesssocialsharing{box-sizing:border-box;margin:18px auto}
+.scriptlesssocialsharing-buttons{border-collapse:separate;border-spacing:3px;display:table;table-layout:fixed;width:100%}
+.scriptlesssocialsharing-buttons a.button{border:none;border-radius:0;color:white;display:table-cell;text-align:center;text-decoration:none;padding:9px}
+.scriptlesssocialsharing-buttons a.button:hover{color:#fff}
+.scriptlesssocialsharing-buttons .sss-name{position:inherit;clip:rect(1px, 1px, 1px, 1px);height:1px;width:1px;border:0;overflow:hidden;word-wrap:break-word}
+.scriptlesssocialsharing-buttons .button.email{background-color:#333;background-color:rgba(51,51,51,0.8)}.scriptlesssocialsharing-buttons .button.email:hover{background-color:#333}
+.scriptlesssocialsharing-buttons .button.twitter{background-color:#55acee;background-color:rgba(85,172,238,0.8)}.scriptlesssocialsharing-buttons .button.twitter:hover{background-color:#55acee}
+.scriptlesssocialsharing-buttons .button.facebook{background-color:#3b5998;background-color:rgba(59,89,152,0.8)}.scriptlesssocialsharing-buttons .button.facebook:hover{background-color:#3b5998}
+.scriptlesssocialsharing-buttons .button.linkedin{background-color:#0077b5;background-color:rgba(0,119,181,0.8)}.scriptlesssocialsharing-buttons .button.linkedin:hover{background-color:#0077b5}
+.scriptlesssocialsharing-buttons .button.google{background-color:#dc4e41;background-color:rgba(220,78,65,0.8)}.scriptlesssocialsharing-buttons .button.google:hover{background-color:#dc4e41}
+.scriptlesssocialsharing-buttons .button.pinterest {background-color: #bd081c;background-color: rgba(189, 8, 28, .8)}
+.scriptlesssocialsharing-buttons .button.pinterest:hover {background-color: #bd081c}  
+.scriptlesssocialsharing-buttons .button.reddit {background-color: #ff4500;background-color: rgba(255, 69, 0, .8)}
+.scriptlesssocialsharing-buttons .button.reddit:hover {background-color: #ff4500}
+@media print {.scriptlesssocialsharing {display: none}}		</style>
+	<script type="text/javascript" async="" src="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/a.min.js.download"></script><link rel="stylesheet" href="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/OneSignalSDKStyles.css"></head>
+<body class="post-template-default single single-post postid-2394 single-format-standard dwpb-push-page dwpb_responsive_extra_small custom-header header-image content-sidebar" itemscope="" itemtype="https://schema.org/WebPage"><div class="site-container"><header class="site-header" itemscope="" itemtype="https://schema.org/WPHeader"><div class="wrap"><div class="title-area"><p class="site-title" itemprop="headline"><a href="https://www.journaldev.com/">JournalDev</a></p><p class="site-description" itemprop="description">Java, Java EE, Android, Python, Web Development Tutorials</p></div><div class="widget-area header-widget-area">
+<!-- Quick Adsense Wordpress Plugin: http://quickadsense.com/ -->
+<section id="adswidget8-quick-adsense-3" class="widget widget_adswidget8-quick-adsense"><div class="widget-wrap"><!-- 728x90/320x50 -->
+<div id="waldo-tag-2280" data-processed="true"><script type="text/javascript">googletag.cmd.push(function() { googletag.display('waldo-tag-2280'); });</script></div></div></section>
+</div></div></header><nav class="nav-primary" aria-label="Main" itemscope="" itemtype="https://schema.org/SiteNavigationElement"><div class="wrap"><div class="responsive-menu-icon"></div><ul id="menu-new-headermenu" class="menu genesis-nav-menu menu-primary responsive-menu"><li id="menu-item-17036" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-17036"><a href="https://www.journaldev.com/java-tutorial-java-ee-tutorials" itemprop="url"><span itemprop="name">Java Tutorial</span></a></li>
+<li id="menu-item-7611" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-7611"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#" itemprop="url"><span itemprop="name">#Index Posts</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-7612" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7612"><a href="https://www.journaldev.com/7153/core-java-tutorial" itemprop="url"><span itemprop="name">Core Java Tutorial</span></a></li>
+	<li id="menu-item-7613" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7613"><a href="https://www.journaldev.com/1827/java-design-patterns-example-tutorial" itemprop="url"><span itemprop="name">Java Design Patterns</span></a></li>
+	<li id="menu-item-7614" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7614"><a href="https://www.journaldev.com/2114/servlet-jsp-tutorial" itemprop="url"><span itemprop="name">Servlet JSP Tutorial</span></a></li>
+	<li id="menu-item-7615" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7615"><a href="https://www.journaldev.com/2310/struts2-tutorial-with-example-projects" itemprop="url"><span itemprop="name">Struts 2 Tutorial</span></a></li>
+	<li id="menu-item-7616" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7616"><a href="https://www.journaldev.com/2888/spring-tutorial-spring-core-tutorial" itemprop="url"><span itemprop="name">Spring Tutorial</span></a></li>
+	<li id="menu-item-7638" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7638"><a href="https://www.journaldev.com/7635/jsf-tutorial" itemprop="url"><span itemprop="name">JSF Tutorial</span></a></li>
+	<li id="menu-item-7620" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7620"><a href="https://www.journaldev.com/5516/primefaces-tutorial-with-example-projects" itemprop="url"><span itemprop="name">Primefaces Tutorial</span></a></li>
+	<li id="menu-item-7619" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7619"><a href="https://www.journaldev.com/2681/jdbc-tutorial" itemprop="url"><span itemprop="name">JDBC Tutorial</span></a></li>
+	<li id="menu-item-7617" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7617"><a href="https://www.journaldev.com/3793/hibernate-tutorial" itemprop="url"><span itemprop="name">Hibernate Tutorial</span></a></li>
+	<li id="menu-item-7618" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7618"><a href="https://www.journaldev.com/6672/mongodb-tutorial-installation-example-projects-integration-with-servlet-spring-jsf" itemprop="url"><span itemprop="name">MongoDB Tutorial</span></a></li>
+</ul>
+</li>
+<li id="menu-item-7621" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-7621"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#" itemprop="url"><span itemprop="name">#Interview Questions</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-7622" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7622"><a href="https://www.journaldev.com/java-interview-questions" itemprop="url"><span itemprop="name">Java Interview Questions</span></a></li>
+	<li id="menu-item-23747" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23747"><a href="https://www.journaldev.com/2366/core-java-interview-questions-and-answers" itemprop="url"><span itemprop="name">Core Java Interview Questions</span></a></li>
+	<li id="menu-item-7623" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7623"><a href="https://www.journaldev.com/2529/jdbc-interview-questions-and-answers" itemprop="url"><span itemprop="name">JDBC Interview Questions</span></a></li>
+	<li id="menu-item-7624" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7624"><a href="https://www.journaldev.com/2015/servlet-interview-questions-and-answers" itemprop="url"><span itemprop="name">Servlet Interview Questions</span></a></li>
+	<li id="menu-item-7625" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7625"><a href="https://www.journaldev.com/2110/jsp-interview-questions-and-answers" itemprop="url"><span itemprop="name">JSP Interview Questions</span></a></li>
+	<li id="menu-item-7626" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7626"><a href="https://www.journaldev.com/2354/struts2-interview-questions-and-answers" itemprop="url"><span itemprop="name">Struts2 Interview Questions</span></a></li>
+	<li id="menu-item-7627" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7627"><a href="https://www.journaldev.com/2696/spring-interview-questions-and-answers" itemprop="url"><span itemprop="name">Spring Interview Questions</span></a></li>
+	<li id="menu-item-7628" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7628"><a href="https://www.journaldev.com/3633/hibernate-interview-questions-and-answers" itemprop="url"><span itemprop="name">Hibernate Interview Questions</span></a></li>
+	<li id="menu-item-7629" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7629"><a href="https://www.journaldev.com/7261/jsf-interview-questions-and-answers" itemprop="url"><span itemprop="name">JSF Interview Questions</span></a></li>
+</ul>
+</li>
+<li id="menu-item-17037" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-17037"><a href="https://www.journaldev.com/resources" itemprop="url"><span itemprop="name">Resources</span></a></li>
+</ul></div></nav>	
+	<div class="wrapper mailchimp">
+        <div class="box"> 
+            <form action="https://journaldev.us8.list-manage.com/subscribe/post-json?u=612f3d966c86000f37699d8cf&amp;id=c64db63284&amp;SIGNUP=TOP_HEADER&amp;c=?" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate">
+				<span>
+					Subscribe to Download Java Design Patterns eBook
+				</span>
+				<div class="main_inputs">	
+				<input type="text" value="" name="FNAME" class="name" id="mce-name" placeholder="Full name" required="">
+				
+				<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="name@example.com" required="">
+				
+                <input type="submit" value="Download Now" name="subscribe" id="mc-embedded-subscribe" class="mc-button">
+				</div>
+				
+				 <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_612f3d966c86000f37699d8cf_c64db63284" tabindex="-1" value=""></div>
+    <div class="clear"></div>
+				
+            </form>
+                <div id="subscribe-result" style="display: none">
+					<p>Thank you for subscribing. Please check your email to confirm subscription.</p>
+                </div>
+        </div>
+    </div>
+	
+
+	<script>
+		var $ = jQuery;
+		$(document).ready(function () {
+  var $form = $('#mc-embedded-subscribe-form');
+  if ($form.length > 0) {
+    $('#mc-embedded-subscribe-form input[type="submit"]').bind('click', function (event) {
+      if (event) event.preventDefault();
+      mailchimp_email_register($form);
+    })
+  }
+})
+		
+function mc_validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+
+function mailchimp_email_register($form) {
+	if(mc_validateEmail($("#mce-EMAIL").val() )) {
+		$('#mc-embedded-subscribe').val('Sending...');
+		$.ajax({
+			type: $form.attr('method'),
+			url: $form.attr('action'),
+			data: $form.serialize(),
+			cache: false,
+			dataType: 'json',
+			contentType: 'application/json; charset=utf-8',
+			error: function (err) { alert('Could not connect to the registration server. Please try again later.') },
+			success: function (data) {
+				$('#mc-embedded-subscribe').val('subscribe');
+				if (data.result === 'success') {
+					console.log(data.msg);
+					$('#mce-EMAIL').css('borderColor', '#ffffff');
+					$('#subscribe-result').css('color', 'rgb(53, 114, 210)');
+					$('#mc-embedded-subscribe-form').fadeOut(300);
+					$('#subscribe-result').fadeIn(300);
+					document.cookie = "subscribed=true; expires=Thu, 18 Dec 2050 12:00:00 UTC;domain=;path=/";
+					$('#mce-EMAIL').val('');
+					$('#mce-name').val('');
+				} else {
+					console.log(data.msg)
+					alert("You have already subscribed! Please try with different email.");
+				}
+			}
+		});
+	} else {
+		alert("Please enter a valid email");
+	}
+};
+	</script>
+
+<div class="site-inner"><div class="content-sidebar-wrap"><main class="content"><div class="breadcrumb" itemtype="https://schema.org/BreadcrumbList">	You are here:
+<span><span><a href="https://www.journaldev.com/">Home</a> » <span><a href="https://www.journaldev.com/java">Java</a> » <span><a href="https://www.journaldev.com/java/design-patterns">Design Patterns</a> » <span class="breadcrumb_last">Java Dependency Injection – DI Design Pattern Example Tutorial</span></span></span></span></span></div><article class="post-2394 post type-post status-publish format-standard has-post-thumbnail category-design-patterns entry" itemscope="" itemtype="https://schema.org/CreativeWork"><header class="entry-header"><h1 class="entry-title" itemprop="headline">Java Dependency Injection – DI Design Pattern Example Tutorial</h1>
+<p class="entry-meta"><span class="entry-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person"><a href="https://www.journaldev.com/author/pankaj" class="entry-author-link" itemprop="url" rel="author"><span class="entry-author-name" itemprop="name">Pankaj</span></a></span> <span class="entry-comments-link"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comments">71 Comments</a></span> </p></header><div class="entry-content" itemprop="text"><!-- Quick Adsense WordPress Plugin: http://quickadsense.com/ -->
+<div style="float: none; margin:10px 0 10px 0; text-align:center;">
+<div data-type="ad" data-publisher="journaldev.com" data-zone="jd_after_entry_728x90" data-format="728x90"> </div>
+</div>
+<p><strong>Java Dependency Injection</strong> <a href="https://www.journaldev.com/1827/java-design-patterns-example-tutorial">design pattern</a> allows us to remove the hard-coded dependencies and make our application loosely coupled, extendable and maintainable. We can implement <strong>dependency injection in java</strong> to move the dependency resolution from compile-time to runtime.</p>
+<div id="toc_container" class="toc_light_blue no_bullets"><p class="toc_title">Table of Contents <span class="toc_toggle">[<a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#">hide</a>]</span></p><ul class="toc_list"><li><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#java-dependency-injection"><span class="toc_number toc_depth_1">1</span> Java Dependency Injection</a><ul><li><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#java-dependency-injection-8211-service-components"><span class="toc_number toc_depth_2">1.1</span> Java Dependency Injection – Service Components</a></li><li><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#java-dependency-injection-8211-service-consumer"><span class="toc_number toc_depth_2">1.2</span> Java Dependency Injection – Service Consumer</a></li><li><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#java-dependency-injection-8211-injectors-classes"><span class="toc_number toc_depth_2">1.3</span> Java Dependency Injection – Injectors Classes</a></li><li><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#java-dependency-injection-8211-junit-test-case-with-mock-injector-and-service"><span class="toc_number toc_depth_2">1.4</span> Java Dependency Injection – JUnit Test Case with Mock Injector and Service</a></li><li><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#benefits-of-java-dependency-injection"><span class="toc_number toc_depth_2">1.5</span> Benefits of Java Dependency Injection</a></li><li><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#disadvantages-of-java-dependency-injection"><span class="toc_number toc_depth_2">1.6</span> Disadvantages of Java Dependency Injection</a></li></ul></li></ul></div>
+<h2><span id="java-dependency-injection">Java Dependency Injection</span></h2>
+<p><a href="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/java-dependency-injection-example-tutorial.jpg"><img src="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/java-dependency-injection-example-tutorial.jpg" alt="Java Dependency Injection, Dependency Injection in Java Example Tutorial" width="560" height="315" class="aligncenter size-full wp-image-10861" srcset="https://cdn.journaldev.com/wp-content/uploads/2013/12/java-dependency-injection-example-tutorial.jpg 560w, https://cdn.journaldev.com/wp-content/uploads/2013/12/java-dependency-injection-example-tutorial-450x253.jpg 450w, https://cdn.journaldev.com/wp-content/uploads/2013/12/java-dependency-injection-example-tutorial-20x11.jpg 20w" sizes="(max-width: 560px) 100vw, 560px"></a><br>
+Java Dependency injection seems hard to grasp with theory, so I would take a simple example and then we will see how to use dependency injection pattern to achieve loose coupling and extendability in the application.</p>
+<p>Let’s say we have an application where we consume <code>EmailService</code> to send emails. Normally we would implement this like below.</p>
+<pre style="display: block;"><code class="hljs cs"><div class="re_clip-board" style="display: none;">Copy</div>
+package com.journaldev.java.legacy;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">EmailService</span> {
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sendEmail</span>(<span class="hljs-params">String message, String receiver</span>)</span>{
+		<span class="hljs-comment">//logic to send email</span>
+		System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">"Email sent to "</span>+receiver+ <span class="hljs-string">" with Message="</span>+message);
+	}
+}
+</code></pre>
+<p><code>EmailService</code> class holds the logic to send email message to the recipient email address. Our application code will be like below.</p>
+<pre style="display: block;"><code class="hljs java"><div class="re_clip-board" style="display: none;">Copy</div>
+<span class="hljs-keyword">package</span> com.journaldev.java.legacy;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApplication</span> </span>{
+
+	<span class="hljs-keyword">private</span> EmailService email = <span class="hljs-keyword">new</span> EmailService();
+	
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">processMessages</span><span class="hljs-params">(String msg, String rec)</span></span>{
+		<span class="hljs-comment">//do some msg validation, manipulation logic etc</span>
+		<span class="hljs-keyword">this</span>.email.sendEmail(msg, rec);
+	}
+}
+</code></pre>
+<p>Our client code that will use <code>MyApplication</code> class to send email messages will be like below.</p>
+<pre style="display: block;"><code class="hljs java"><div class="re_clip-board" style="display: none;">Copy</div>
+<span class="hljs-keyword">package</span> com.journaldev.java.legacy;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyLegacyTest</span> </span>{
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+		MyApplication app = <span class="hljs-keyword">new</span> MyApplication();
+		app.processMessages(<span class="hljs-string">"Hi Pankaj"</span>, <span class="hljs-string">"pankaj@abc.com"</span>);
+	}
+
+}
+</code></pre>
+<p>At first look, there seems nothing wrong with above implementation. But above code logic has certain limitations.</p>
+<!-- Quick Adsense WordPress Plugin: http://quickadsense.com/ -->
+<div style="float: none; margin:10px 0 10px 0; text-align:center;">
+<div data-type="ad" data-publisher="journaldev.com" data-format="300x250" data-zone="jd_post_mid_300x250"></div>
+</div>
+
+<ul>
+<li><code>MyApplication</code> class is responsible to initialize the email service and then use it. This leads to hard-coded dependency. If we want to switch to some other advanced email service in future, it will require code changes in MyApplication class. This makes our application hard to extend and if email service is used in multiple classes then that would be even more harder.</li>
+<li>If we want to extend our application to provide additional messaging feature, such as SMS or Facebook message then we would need to write another application for that. This will involve code changes in application classes and in client classes too.</li>
+<li>Testing the application will be very difficult since our application is directly creating the email service instance. There is no way we can mock these objects in our test classes.</li>
+</ul>
+<p>One can argue that we can remove the email service instance creation from <code>MyApplication</code> class by having a constructor that requires email service as argument.</p>
+<pre style="display: block;"><code class="hljs java"><div class="re_clip-board" style="display: none; width: 85px;">Copy</div>
+<span class="hljs-keyword">package</span> com.journaldev.java.legacy;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApplication</span> </span>{
+
+	<span class="hljs-keyword">private</span> EmailService email = <span class="hljs-keyword">null</span>;
+	
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyApplication</span><span class="hljs-params">(EmailService svc)</span></span>{
+		<span class="hljs-keyword">this</span>.email=svc;
+	}
+	
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">processMessages</span><span class="hljs-params">(String msg, String rec)</span></span>{
+		<span class="hljs-comment">//do some msg validation, manipulation logic etc</span>
+		<span class="hljs-keyword">this</span>.email.sendEmail(msg, rec);
+	}
+}
+</code></pre>
+<p>But in this case, we are asking client applications or test classes to initializing the email service that is not a good design decision.</p>
+<p>Now let’s see how we can apply java dependency injection pattern to solve all the problems with above implementation. Dependency Injection in java requires at least following:</p>
+<ol>
+<li>Service components should be designed with base class or interface. It’s better to prefer interfaces or abstract classes that would define contract for the services.</li>
+<li>Consumer classes should be written in terms of service interface.</li>
+<li>Injector classes that will initialize the services and then the consumer classes.</li>
+</ol>
+<h3><span id="java-dependency-injection-8211-service-components">Java Dependency Injection – Service Components</span></h3>
+<p>For our case, we can have <code>MessageService</code> that will declare the contract for service implementations.</p>
+<pre style="display: block;"><code class="hljs java"><div class="re_clip-board" style="display: none; width: 85px;">Copy</div>
+<span class="hljs-keyword">package</span> com.journaldev.java.dependencyinjection.service;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">MessageService</span> </span>{
+
+	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">sendMessage</span><span class="hljs-params">(String msg, String rec)</span></span>;
+}
+</code></pre>
+<p>Now let’s say we have Email and SMS services that implement above interfaces.</p>
+<pre style="display: block;"><code class="hljs java"><div class="re_clip-board" style="display: none; width: 85px;">Copy</div>
+<span class="hljs-keyword">package</span> com.journaldev.java.dependencyinjection.service;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EmailServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">MessageService</span> </span>{
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sendMessage</span><span class="hljs-params">(String msg, String rec)</span> </span>{
+		<span class="hljs-comment">//logic to send email</span>
+		System.out.println(<span class="hljs-string">"Email sent to "</span>+rec+ <span class="hljs-string">" with Message="</span>+msg);
+	}
+
+}
+</code></pre>
+<pre style="display: block;"><code class="hljs java"><div class="re_clip-board" style="display: none;">Copy</div>
+<span class="hljs-keyword">package</span> com.journaldev.java.dependencyinjection.service;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SMSServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">MessageService</span> </span>{
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sendMessage</span><span class="hljs-params">(String msg, String rec)</span> </span>{
+		<span class="hljs-comment">//logic to send SMS</span>
+		System.out.println(<span class="hljs-string">"SMS sent to "</span>+rec+ <span class="hljs-string">" with Message="</span>+msg);
+	}
+
+}
+</code></pre>
+<p>Our dependency injection java services are ready and now we can write our consumer class.</p>
+<h3><span id="java-dependency-injection-8211-service-consumer">Java Dependency Injection – Service Consumer</span></h3>
+<p>We are not required to have base interfaces for consumer classes but I will have a <code>Consumer</code> interface declaring contract for consumer classes.</p>
+<pre style="display: block;"><code class="hljs java"><div class="re_clip-board" style="display: none; width: 85px;">Copy</div>
+<span class="hljs-keyword">package</span> com.journaldev.java.dependencyinjection.consumer;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Consumer</span> </span>{
+
+	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">processMessages</span><span class="hljs-params">(String msg, String rec)</span></span>;
+}
+</code></pre>
+<p>My consumer class implementation is like below.</p>
+<pre style="display: block;"><code class="hljs java"><div class="re_clip-board" style="display: none;">Copy</div>
+<span class="hljs-keyword">package</span> com.journaldev.java.dependencyinjection.consumer;
+
+<span class="hljs-keyword">import</span> com.journaldev.java.dependencyinjection.service.MessageService;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyDIApplication</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Consumer</span></span>{
+
+	<span class="hljs-keyword">private</span> MessageService service;
+	
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyDIApplication</span><span class="hljs-params">(MessageService svc)</span></span>{
+		<span class="hljs-keyword">this</span>.service=svc;
+	}
+	
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">processMessages</span><span class="hljs-params">(String msg, String rec)</span></span>{
+		<span class="hljs-comment">//do some msg validation, manipulation logic etc</span>
+		<span class="hljs-keyword">this</span>.service.sendMessage(msg, rec);
+	}
+
+}
+</code></pre>
+<p>Notice that our application class is just using the service. It does not initialize the service that leads to better “<em>separation of concerns</em>“. Also use of service interface allows us to easily test the application by mocking the MessageService and bind the services at runtime rather than compile time. </p>
+<p>Now we are ready to write <strong>java dependency injector classes</strong> that will initialize the service and also consumer classes.</p>
+<h3><span id="java-dependency-injection-8211-injectors-classes">Java Dependency Injection – Injectors Classes</span></h3>
+<p>Let’s have an interface <code>MessageServiceInjector</code> with method declaration that returns the <code>Consumer</code> class.</p>
+<pre style="display: block;"><code class="hljs java"><div class="re_clip-board" style="display: none;">Copy</div>
+<span class="hljs-keyword">package</span> com.journaldev.java.dependencyinjection.injector;
+
+<span class="hljs-keyword">import</span> com.journaldev.java.dependencyinjection.consumer.Consumer;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">MessageServiceInjector</span> </span>{
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> Consumer <span class="hljs-title">getConsumer</span><span class="hljs-params">()</span></span>;
+}
+</code></pre>
+<p>Now for every service, we will have to create injector classes like below.</p>
+<!-- Quick Adsense WordPress Plugin: http://quickadsense.com/ -->
+<div style="float: none; margin:10px 0 10px 0; text-align:center;">
+<div data-type="ad" data-publisher="journaldev.com" data-zone="jd_leaderboard_728x90" data-format="728x90"> </div>
+</div>
+
+<pre style="display: block;"><code class="hljs java"><div class="re_clip-board" style="display: none;">Copy</div>
+<span class="hljs-keyword">package</span> com.journaldev.java.dependencyinjection.injector;
+
+<span class="hljs-keyword">import</span> com.journaldev.java.dependencyinjection.consumer.Consumer;
+<span class="hljs-keyword">import</span> com.journaldev.java.dependencyinjection.consumer.MyDIApplication;
+<span class="hljs-keyword">import</span> com.journaldev.java.dependencyinjection.service.EmailServiceImpl;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EmailServiceInjector</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">MessageServiceInjector</span> </span>{
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> Consumer <span class="hljs-title">getConsumer</span><span class="hljs-params">()</span> </span>{
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> MyDIApplication(<span class="hljs-keyword">new</span> EmailServiceImpl());
+	}
+
+}
+</code></pre>
+<pre style="display: block;"><code class="hljs java"><div class="re_clip-board" style="display: none;">Copy</div>
+<span class="hljs-keyword">package</span> com.journaldev.java.dependencyinjection.injector;
+
+<span class="hljs-keyword">import</span> com.journaldev.java.dependencyinjection.consumer.Consumer;
+<span class="hljs-keyword">import</span> com.journaldev.java.dependencyinjection.consumer.MyDIApplication;
+<span class="hljs-keyword">import</span> com.journaldev.java.dependencyinjection.service.SMSServiceImpl;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SMSServiceInjector</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">MessageServiceInjector</span> </span>{
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> Consumer <span class="hljs-title">getConsumer</span><span class="hljs-params">()</span> </span>{
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> MyDIApplication(<span class="hljs-keyword">new</span> SMSServiceImpl());
+	}
+
+}
+</code></pre>
+<p>Now let’s see how our client applications will use the application with a simple program.</p>
+<pre style="display: block;"><code class="hljs java"><div class="re_clip-board" style="display: none;">Copy</div>
+<span class="hljs-keyword">package</span> com.journaldev.java.dependencyinjection.test;
+
+<span class="hljs-keyword">import</span> com.journaldev.java.dependencyinjection.consumer.Consumer;
+<span class="hljs-keyword">import</span> com.journaldev.java.dependencyinjection.injector.EmailServiceInjector;
+<span class="hljs-keyword">import</span> com.journaldev.java.dependencyinjection.injector.MessageServiceInjector;
+<span class="hljs-keyword">import</span> com.journaldev.java.dependencyinjection.injector.SMSServiceInjector;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyMessageDITest</span> </span>{
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+		String msg = <span class="hljs-string">"Hi Pankaj"</span>;
+		String email = <span class="hljs-string">"pankaj@abc.com"</span>;
+		String phone = <span class="hljs-string">"4088888888"</span>;
+		MessageServiceInjector injector = <span class="hljs-keyword">null</span>;
+		Consumer app = <span class="hljs-keyword">null</span>;
+		
+		<span class="hljs-comment">//Send email</span>
+		injector = <span class="hljs-keyword">new</span> EmailServiceInjector();
+		app = injector.getConsumer();
+		app.processMessages(msg, email);
+		
+		<span class="hljs-comment">//Send SMS</span>
+		injector = <span class="hljs-keyword">new</span> SMSServiceInjector();
+		app = injector.getConsumer();
+		app.processMessages(msg, phone);
+	}
+
+}
+</code></pre>
+<p>As you can see that our application classes are responsible only for using the service. Service classes are created in injectors. Also if we have to further extend our application to allow facebook messaging, we will have to write Service classes and injector classes only.</p>
+<p>So dependency injection implementation solved the problem with hard-coded dependency and helped us in making our application flexible and easy to extend. Now let’s see how easily we can test our application class by mocking the injector and service classes.</p>
+<h3><span id="java-dependency-injection-8211-junit-test-case-with-mock-injector-and-service">Java Dependency Injection – JUnit Test Case with Mock Injector and Service</span></h3>
+<pre style="display: block;"><code class="hljs java"><div class="re_clip-board" style="display: none;">Copy</div>
+<span class="hljs-keyword">package</span> com.journaldev.java.dependencyinjection.test;
+
+<span class="hljs-keyword">import</span> org.junit.After;
+<span class="hljs-keyword">import</span> org.junit.Before;
+<span class="hljs-keyword">import</span> org.junit.Test;
+
+<span class="hljs-keyword">import</span> com.journaldev.java.dependencyinjection.consumer.Consumer;
+<span class="hljs-keyword">import</span> com.journaldev.java.dependencyinjection.consumer.MyDIApplication;
+<span class="hljs-keyword">import</span> com.journaldev.java.dependencyinjection.injector.MessageServiceInjector;
+<span class="hljs-keyword">import</span> com.journaldev.java.dependencyinjection.service.MessageService;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyDIApplicationJUnitTest</span> </span>{
+
+	<span class="hljs-keyword">private</span> MessageServiceInjector injector;
+	<span class="hljs-meta">@Before</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setUp</span><span class="hljs-params">()</span></span>{
+		<span class="hljs-comment">//mock the injector with anonymous class</span>
+		injector = <span class="hljs-keyword">new</span> MessageServiceInjector() {
+			
+			<span class="hljs-meta">@Override</span>
+			<span class="hljs-function"><span class="hljs-keyword">public</span> Consumer <span class="hljs-title">getConsumer</span><span class="hljs-params">()</span> </span>{
+				<span class="hljs-comment">//mock the message service</span>
+				<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> MyDIApplication(<span class="hljs-keyword">new</span> MessageService() {
+					
+					<span class="hljs-meta">@Override</span>
+					<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sendMessage</span><span class="hljs-params">(String msg, String rec)</span> </span>{
+						System.out.println(<span class="hljs-string">"Mock Message Service implementation"</span>);
+						
+					}
+				});
+			}
+		};
+	}
+	
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>{
+		Consumer consumer = injector.getConsumer();
+		consumer.processMessages(<span class="hljs-string">"Hi Pankaj"</span>, <span class="hljs-string">"pankaj@abc.com"</span>);
+	}
+	
+	<span class="hljs-meta">@After</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">tear</span><span class="hljs-params">()</span></span>{
+		injector = <span class="hljs-keyword">null</span>;
+	}
+
+}
+</code></pre>
+<p>As you can see that I am using <a href="https://www.journaldev.com/996/java-inner-class">anonymous classes</a> to <em>mock the injector and service classes</em> and I can easily test my application methods. I am using JUnit 4 for above test class, so make sure it’s in your project build path if you are running above test class.</p>
+<p>We have used constructors to inject the dependencies in the application classes, another way is to use setter method to <strong>inject dependencies</strong> in application classes. For setter method dependency injection, our application class will be implemented like below.</p>
+<pre style="display: block;"><code class="hljs java"><div class="re_clip-board" style="display: none;">Copy</div>
+<span class="hljs-keyword">package</span> com.journaldev.java.dependencyinjection.consumer;
+
+<span class="hljs-keyword">import</span> com.journaldev.java.dependencyinjection.service.MessageService;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyDIApplication</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Consumer</span></span>{
+
+	<span class="hljs-keyword">private</span> MessageService service;
+	
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyDIApplication</span><span class="hljs-params">()</span></span>{}
+
+	<span class="hljs-comment">//setter dependency injection	</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setService</span><span class="hljs-params">(MessageService service)</span> </span>{
+		<span class="hljs-keyword">this</span>.service = service;
+	}
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">processMessages</span><span class="hljs-params">(String msg, String rec)</span></span>{
+		<span class="hljs-comment">//do some msg validation, manipulation logic etc</span>
+		<span class="hljs-keyword">this</span>.service.sendMessage(msg, rec);
+	}
+
+}
+</code></pre>
+<pre style="display: block;"><code class="hljs java"><div class="re_clip-board" style="display: block;">Copy</div>
+<span class="hljs-keyword">package</span> com.journaldev.java.dependencyinjection.injector;
+
+<span class="hljs-keyword">import</span> com.journaldev.java.dependencyinjection.consumer.Consumer;
+<span class="hljs-keyword">import</span> com.journaldev.java.dependencyinjection.consumer.MyDIApplication;
+<span class="hljs-keyword">import</span> com.journaldev.java.dependencyinjection.service.EmailServiceImpl;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EmailServiceInjector</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">MessageServiceInjector</span> </span>{
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> Consumer <span class="hljs-title">getConsumer</span><span class="hljs-params">()</span> </span>{
+		MyDIApplication app = <span class="hljs-keyword">new</span> MyDIApplication();
+		app.setService(<span class="hljs-keyword">new</span> EmailServiceImpl());
+		<span class="hljs-keyword">return</span> app;
+	}
+
+}
+</code></pre>
+<p>One of the best example of setter dependency injection is <a href="https://www.journaldev.com/2203/get-servlet-session-request-response-context-attributes-struts-2-action">Struts2 Servlet API Aware interfaces</a>.</p>
+<p>Whether to use Constructor based dependency injection or setter based is a design decision and depends on your requirements. For example, if my application can’t work at all without the service class then I would prefer constructor based DI or else I would go for setter method based DI to use it only when it’s really needed.</p>
+<p><strong>Dependency Injection in Java</strong> is a way to achieve <strong>Inversion of control</strong> (<strong>IoC</strong>) in our application by moving objects binding from compile time to runtime. We can achieve IoC through <a href="https://www.journaldev.com/1392/factory-design-pattern-in-java">Factory Pattern</a>, <a href="https://www.journaldev.com/1763/template-method-design-pattern-in-java">Template Method Design Pattern</a>, <a href="https://www.journaldev.com/1754/strategy-design-pattern-in-java-example-tutorial">Strategy Pattern</a> and Service Locator pattern too.</p>
+<p><strong><a href="https://www.journaldev.com/2410/spring-dependency-injection">Spring Dependency Injection</a></strong>, <strong><a href="https://www.journaldev.com/2403/google-guice-dependency-injection-example-tutorial">Google Guice</a></strong> and <strong>Java EE CDI</strong> frameworks facilitate the process of dependency injection through use of <a href="https://www.journaldev.com/1789/java-reflection-example-tutorial">Java Reflection API</a> and <a href="https://www.journaldev.com/721/java-annotations">java annotations</a>. All we need is to annotate the field, constructor or setter method and configure them in configuration xml files or classes.</p>
+<h3><span id="benefits-of-java-dependency-injection">Benefits of Java Dependency Injection</span></h3>
+<p>Some of the benefits of using Dependency Injection in Java are:</p>
+<ul>
+<li>Separation of Concerns</li>
+<li>Boilerplate Code reduction in application classes because all work to initialize dependencies is handled by the injector component</li>
+<li>Configurable components makes application easily extendable</li>
+<li>Unit testing is easy with mock objects</li>
+</ul>
+<h3><span id="disadvantages-of-java-dependency-injection">Disadvantages of Java Dependency Injection</span></h3>
+<p>Java Dependency injection has some disadvantages too:</p>
+<ul>
+<li>If overused, it can lead to maintenance issues because effect of changes are known at runtime.</li>
+<li>Dependency injection in java hides the service class dependencies that can lead to runtime errors that would have been caught at compile time.</li>
+</ul>
+<div class="download-box"><a href="https://www.journaldev.com/wp-content/uploads/projects/DependencyInjectionExample.zip" target="_blank">Download Dependency Injection Project</a></div>
+<p>That’s all for <strong>dependency injection pattern in java</strong>. It’s good to know and use it when we are in control of the services.</p>
+
+<!-- Quick Adsense WordPress Plugin: http://quickadsense.com/ -->
+<div style="float: none; margin:10px 0 10px 0; text-align:center;">
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle" style="display:block" data-ad-format="autorelaxed" data-ad-client="ca-pub-6459403732537629" data-ad-slot="7381719979"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<div style="font-size: 0px; height: 0px; line-height: 0px; margin: 0; padding: 0; clear: both;"></div><div class="scriptlesssocialsharing"><div class="scriptlesssocialsharing-buttons"><a class="button twitter" target="_blank" href="https://twitter.com/intent/tweet?text=Java%20Dependency%20Injection%20%E2%80%93%20DI%20Design%20Pattern%20Example%20Tutorial&amp;url=https%3A%2F%2Fwww.journaldev.com%2F2394%2Fjava-dependency-injection-design-pattern-example-tutorial&amp;via=JournalDev&amp;related=JournalDev" rel="noopener"><span class="sss-name">Twitter</span></a><a class="button facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.journaldev.com%2F2394%2Fjava-dependency-injection-design-pattern-example-tutorial" rel="noopener"><span class="sss-name">Facebook</span></a><a class="button linkedin" target="_blank" href="https://www.linkedin.com/shareArticle?mini=1&amp;url=https%3A%2F%2Fwww.journaldev.com%2F2394%2Fjava-dependency-injection-design-pattern-example-tutorial&amp;title=Java%20Dependency%20Injection%20%E2%80%93%20DI%20Design%20Pattern%20Example%20Tutorial&amp;source=https://www.journaldev.com" rel="noopener"><span class="sss-name">Linkedin</span></a><a class="button email" href="mailto:?body=I%20read%20this%20post%20and%20wanted%20to%20share%20it%20with%20you.%20Here%27s%20the%20link:%20https%3A%2F%2Fwww.journaldev.com%2F2394%2Fjava-dependency-injection-design-pattern-example-tutorial&amp;subject=A%20post%20worth%20sharing:%20Java%20Dependency%20Injection%20%E2%80%93%20DI%20Design%20Pattern%20Example%20Tutorial" rel="noopener"><span class="sss-name">Email</span></a></div></div><div class="prev-next-navigation"><a href="https://www.journaldev.com/1827/java-design-patterns-example-tutorial" rel="prev"><div class="previous"><span class="prev_icon">&nbsp;Previous </span><br> <span class="pagi_content">Java Design Patterns – Example Tutorial</span></div></a><a href="https://www.journaldev.com/10350/factory-design-pattern-in-scala" rel="next"><div class="next"><span class="next_icon">Next&nbsp;</span><br> <span class="pagi_content">Factory Design Pattern In Scala</span></div></a></div>
+		<!-- .prev-next-navigation --><section class="author-box" itemprop="author" itemscope="" itemtype="https://schema.org/Person"><img alt="" src="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/8087ef00af2610b870ada12392286695.jpeg" srcset="https://secure.gravatar.com/avatar/8087ef00af2610b870ada12392286695?s=240&amp;d=blank&amp;r=g 2x" class="avatar avatar-120 photo" height="120" width="120"><h4 class="author-box-title">About <span itemprop="name">Pankaj</span></h4><div class="author-box-content" itemprop="description"><p>If you have come this far, it means that you liked what you are reading. Why not reach little more and connect with me directly on <a href="https://plus.google.com/118104420597648001532/posts?rel=author"><strong>Google Plus</strong></a>, <a href="https://www.facebook.com/journaldev"><strong>Facebook</strong></a> or <a href="https://twitter.com/JournalDev"><strong>Twitter</strong></a>. I would love to hear your thoughts and opinions on my articles directly.</p>
+<p>Recently I started creating video tutorials too, so do check out my videos on <a href="https://www.youtube.com/user/JournalDev"><strong>Youtube</strong></a>.</p>
+</div></section></div><footer class="entry-footer"><p class="entry-meta"><span class="entry-categories">Filed Under: <a href="https://www.journaldev.com/java/design-patterns" rel="category tag">Design Patterns</a></span> </p></footer></article><div class="after-entry">
+<!-- Quick Adsense Wordpress Plugin: http://quickadsense.com/ -->
+<section id="adswidget7-quick-adsense-3" class="widget widget_adswidget7-quick-adsense"><div class="widget-wrap"><!-- 728x90/970x90/970x250/320x50 -->
+<div id="waldo-tag-2281" data-processed="true"><script type="text/javascript">googletag.cmd.push(function() { googletag.display('waldo-tag-2281'); });</script></div></div></section>
+</div><div class="adjacent-entry-pagination pagination"><div class="pagination-previous alignleft"><a href="https://www.journaldev.com/1827/java-design-patterns-example-tutorial" rel="prev">« Java Design Patterns – Example Tutorial</a></div><div class="pagination-next alignright"><a href="https://www.journaldev.com/10350/factory-design-pattern-in-scala" rel="next">Factory Design Pattern In Scala »</a></div></div><div class="entry-comments" id="comments"><h3>Comments</h3><ol class="comment-list">
+	<li class="comment even thread-even depth-1" id="comment-44916">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Goran Pjanic</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-10-25T11:49:16+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-44916" class="comment-time-link" itemprop="url">October 25, 2018 at 11:49 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>I can see that for some people the example is not completely clear (some are even boring), so I’d like to clarify something.</p>
+<p>One of the principles of object-oriented design says: “Classes should be open for extension but closed for modification”</p>
+<p>What would that mean in our case? .</p>
+<p>For example, if we want to add a new messaging system, e.g. ViberService, the existing code should not be changed, but only create a new ViberServiceImpl class that implements MessageService and create a new ViberServiceInjector class, and everything will work fine.</p>
+<p>In this way we follow another principle of object programming: “Strive for loosely coupled designs<br>
+between objects that interact”.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-44916" onclick="return addComment.moveForm( &quot;comment-44916&quot;, &quot;44916&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Goran Pjanic">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-44636">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Satya Betha</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-09-27T09:28:23+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-44636" class="comment-time-link" itemprop="url">September 27, 2018 at 9:28 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Very nice explanation</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-44636" onclick="return addComment.moveForm( &quot;comment-44636&quot;, &quot;44636&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Satya Betha">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-even depth-1" id="comment-43643">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">JohnsonMa</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-06-11T20:38:14+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-43643" class="comment-time-link" itemprop="url">June 11, 2018 at 8:38 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Really helpful,thank you!</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-43643" onclick="return addComment.moveForm( &quot;comment-43643&quot;, &quot;43643&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to JohnsonMa">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment odd alt depth-2" id="comment-44115">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">mohan</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-08-05T21:40:46+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-44115" class="comment-time-link" itemprop="url">August 5, 2018 at 9:40 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>I am finding hard to understand. We are still  initializing  EmailServiceInjector which initialize EmailServiceImplementation in MyApplication class that mean when your adding new messaging service you still need do code change on myapplication class which is contracted to objective of decoupling hard coded dependency myapp class.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-44115" onclick="return addComment.moveForm( &quot;comment-44115&quot;, &quot;44115&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to mohan">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-43630">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Fagun Patel</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-06-10T02:42:55+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-43630" class="comment-time-link" itemprop="url">June 10, 2018 at 2:42 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Awesome…..Thanks a lot.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-43630" onclick="return addComment.moveForm( &quot;comment-43630&quot;, &quot;43630&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Fagun Patel">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-43629">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Hrishikesh Raskar</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-06-10T00:53:30+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-43629" class="comment-time-link" itemprop="url">June 10, 2018 at 12:53 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Thanks for the post. Hope you will continue such work.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-43629" onclick="return addComment.moveForm( &quot;comment-43629&quot;, &quot;43629&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Hrishikesh Raskar">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-43439">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Akshay shingan.</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-05-19T01:07:24+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-43439" class="comment-time-link" itemprop="url">May 19, 2018 at 1:07 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>well explained…thank you.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-43439" onclick="return addComment.moveForm( &quot;comment-43439&quot;, &quot;43439&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Akshay shingan.">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-43086">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Gunjan</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-04-19T23:51:59+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-43086" class="comment-time-link" itemprop="url">April 19, 2018 at 11:51 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Thank you for the explanation</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-43086" onclick="return addComment.moveForm( &quot;comment-43086&quot;, &quot;43086&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Gunjan">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-43021">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">amir elhajjam</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-04-18T07:32:13+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-43021" class="comment-time-link" itemprop="url">April 18, 2018 at 7:32 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>very helpful thank u</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-43021" onclick="return addComment.moveForm( &quot;comment-43021&quot;, &quot;43021&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to amir elhajjam">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-42717">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Mukund</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-04-02T11:53:59+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-42717" class="comment-time-link" itemprop="url">April 2, 2018 at 11:53 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>very helpful and easy to understand for beginners</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-42717" onclick="return addComment.moveForm( &quot;comment-42717&quot;, &quot;42717&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Mukund">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-39718">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">teja</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2017-10-13T03:43:09+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-39718" class="comment-time-link" itemprop="url">October 13, 2017 at 3:43 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Thank you</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-39718" onclick="return addComment.moveForm( &quot;comment-39718&quot;, &quot;39718&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to teja">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-39387">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Karthik</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2017-09-06T05:12:06+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-39387" class="comment-time-link" itemprop="url">September 6, 2017 at 5:12 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>confusing, lengthy and boring!</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-39387" onclick="return addComment.moveForm( &quot;comment-39387&quot;, &quot;39387&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Karthik">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-39244">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name"><a href="http://crbtech.in/Java-Training/a-guide-to-introduce-hadoop-to-java-developers/" class="comment-author-link" rel="external nofollow" itemprop="url">Priya</a></span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2017-08-23T22:39:16+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-39244" class="comment-time-link" itemprop="url">August 23, 2017 at 10:39 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Well Explained tutorial of Dependency Injection .  Thanks for Sharing</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-39244" onclick="return addComment.moveForm( &quot;comment-39244&quot;, &quot;39244&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Priya">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-39085">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">saeed</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2017-08-15T02:16:14+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-39085" class="comment-time-link" itemprop="url">August 15, 2017 at 2:16 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Thanks for your great article but your consumer class has 1 dependency(MessagingService interface). what if consumer class have multiple dependency or constructor params???</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-39085" onclick="return addComment.moveForm( &quot;comment-39085&quot;, &quot;39085&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to saeed">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-39083">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Lord Banks</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2017-08-14T13:33:44+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-39083" class="comment-time-link" itemprop="url">August 14, 2017 at 1:33 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>I think its rather confusing. I’ve seen more detailed but easier to follow examples. Good job still</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-39083" onclick="return addComment.moveForm( &quot;comment-39083&quot;, &quot;39083&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Lord Banks">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-38982">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">john</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2017-08-07T03:39:34+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-38982" class="comment-time-link" itemprop="url">August 7, 2017 at 3:39 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>very bad explanation, very intuitive and confusing code, and website font is too large. please get better or refrain from writing “Tutorials” on the internet.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-38982" onclick="return addComment.moveForm( &quot;comment-38982&quot;, &quot;38982&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to john">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-38288">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Gayn Dushantha</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2017-05-31T22:04:45+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-38288" class="comment-time-link" itemprop="url">May 31, 2017 at 10:04 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Thank you!</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-38288" onclick="return addComment.moveForm( &quot;comment-38288&quot;, &quot;38288&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Gayn Dushantha">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-38054">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Yaffa Harari</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2017-05-01T05:36:39+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-38054" class="comment-time-link" itemprop="url">May 1, 2017 at 5:36 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>so much clear and clean<br>
+thank you! <img draggable="false" class="emoji" alt="🙂" src="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/1f642.svg"></p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-38054" onclick="return addComment.moveForm( &quot;comment-38054&quot;, &quot;38054&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Yaffa Harari">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-37931">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Moustafa zein</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2017-04-14T08:50:54+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-37931" class="comment-time-link" itemprop="url">April 14, 2017 at 8:50 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Well done</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-37931" onclick="return addComment.moveForm( &quot;comment-37931&quot;, &quot;37931&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Moustafa zein">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment odd alt depth-2" id="comment-37950">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Srini</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2017-04-17T04:39:24+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-37950" class="comment-time-link" itemprop="url">April 17, 2017 at 4:39 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Very helpful material</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-37950" onclick="return addComment.moveForm( &quot;comment-37950&quot;, &quot;37950&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Srini">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment even thread-even depth-1" id="comment-37910">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">vinod</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2017-04-12T18:52:40+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-37910" class="comment-time-link" itemprop="url">April 12, 2017 at 6:52 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Excellent Job bro</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-37910" onclick="return addComment.moveForm( &quot;comment-37910&quot;, &quot;37910&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to vinod">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-37907">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">pidgey</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2017-04-12T13:10:58+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-37907" class="comment-time-link" itemprop="url">April 12, 2017 at 1:10 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Nice tutorial. But I think your example is just fabric pattern.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-37907" onclick="return addComment.moveForm( &quot;comment-37907&quot;, &quot;37907&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to pidgey">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment even depth-2" id="comment-43879">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Eduardo Ponzoni</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-07-10T14:35:51+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-43879" class="comment-time-link" itemprop="url">July 10, 2018 at 2:35 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Absolutely agreed! For me this is nothing but a factory as there’s no dependency injection as such anywhere.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-43879" onclick="return addComment.moveForm( &quot;comment-43879&quot;, &quot;43879&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Eduardo Ponzoni">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-37489">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Nix</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2017-02-14T23:00:01+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-37489" class="comment-time-link" itemprop="url">February 14, 2017 at 11:00 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Nice article. Dependency Injection seems like Bridge Design Patter,</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-37489" onclick="return addComment.moveForm( &quot;comment-37489&quot;, &quot;37489&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Nix">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-36943">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Sree</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2016-11-30T02:40:38+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-36943" class="comment-time-link" itemprop="url">November 30, 2016 at 2:40 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Good Article Pankaj!!!.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-36943" onclick="return addComment.moveForm( &quot;comment-36943&quot;, &quot;36943&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Sree">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-36909">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Jagadeesh</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2016-11-24T03:58:54+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-36909" class="comment-time-link" itemprop="url">November 24, 2016 at 3:58 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Simply Awesome…</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-36909" onclick="return addComment.moveForm( &quot;comment-36909&quot;, &quot;36909&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Jagadeesh">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-36816">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">sivateja</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2016-11-10T21:58:10+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-36816" class="comment-time-link" itemprop="url">November 10, 2016 at 9:58 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>The best tutorial for dependency injection , Very well explanation, I am very thankfull to you Pankaj sir.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-36816" onclick="return addComment.moveForm( &quot;comment-36816&quot;, &quot;36816&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to sivateja">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-36229">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">paweu</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2016-09-04T09:46:55+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-36229" class="comment-time-link" itemprop="url">September 4, 2016 at 9:46 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Well done.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-36229" onclick="return addComment.moveForm( &quot;comment-36229&quot;, &quot;36229&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to paweu">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-36108">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Sprung</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2016-08-23T14:26:14+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-36108" class="comment-time-link" itemprop="url">August 23, 2016 at 2:26 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Way too long.  DI via service should not take this long to explain.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-36108" onclick="return addComment.moveForm( &quot;comment-36108&quot;, &quot;36108&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Sprung">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment odd alt depth-2" id="comment-36226">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">progger</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2016-09-04T08:41:13+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-36226" class="comment-time-link" itemprop="url">September 4, 2016 at 8:41 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Actually I prefer this explanation to the others I found so far, because he actually goes to the effort of defining interfaces and changing the client to use those. I find other tutorials confusing in that respect, where, the clients continue to use the same concrete classes in the constructor or setter method, although the point of DI is to reduce those dependencies.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-36226" onclick="return addComment.moveForm( &quot;comment-36226&quot;, &quot;36226&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to progger">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment even depth-3" id="comment-36746">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Jack</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2016-11-02T07:05:59+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-36746" class="comment-time-link" itemprop="url">November 2, 2016 at 7:05 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Agreed!</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-36746" onclick="return addComment.moveForm( &quot;comment-36746&quot;, &quot;36746&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Jack">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-35931">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">HuangWei</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2016-07-31T03:58:44+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-35931" class="comment-time-link" itemprop="url">July 31, 2016 at 3:58 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Wonderful, this post help me a lot to understand the DI technology which is the base of Spring FW.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-35931" onclick="return addComment.moveForm( &quot;comment-35931&quot;, &quot;35931&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to HuangWei">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment byuser comment-author-pankaj bypostauthor even depth-2" id="comment-35933">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name"><a href="https://www.journaldev.com/" class="comment-author-link" rel="external nofollow" itemprop="url">Pankaj</a></span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2016-07-31T07:01:13+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-35933" class="comment-time-link" itemprop="url">July 31, 2016 at 7:01 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Thanks for liking it, appreciate your comment.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-35933" onclick="return addComment.moveForm( &quot;comment-35933&quot;, &quot;35933&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Pankaj">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-35868">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Vasily</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2016-07-25T07:30:56+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-35868" class="comment-time-link" itemprop="url">July 25, 2016 at 7:30 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>This is how to take a simple program and turn it into a swollen non-readable over engineered crap. Good job bro <img draggable="false" class="emoji" alt="😉" src="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/1f609.svg"></p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-35868" onclick="return addComment.moveForm( &quot;comment-35868&quot;, &quot;35868&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Vasily">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment even depth-2" id="comment-35950">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">tomacco</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2016-08-02T01:31:51+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-35950" class="comment-time-link" itemprop="url">August 2, 2016 at 1:31 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>“simple program” is not that simple when you are constructing a whole system above it. This kind of decisions increase maintainability and extensibility, meaning a lot of money saved in the mid – long term. But of course, If you are building toys, of course you don’t need to use any of these techniques.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-35950" onclick="return addComment.moveForm( &quot;comment-35950&quot;, &quot;35950&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to tomacco">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment odd alt depth-3" id="comment-37209">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Olu</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2017-01-06T13:29:07+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-37209" class="comment-time-link" itemprop="url">January 6, 2017 at 1:29 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Well said.  That’s how you know the newbies <img draggable="false" class="emoji" alt="🙂" src="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/1f642.svg"></p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-37209" onclick="return addComment.moveForm( &quot;comment-37209&quot;, &quot;37209&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Olu">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment even thread-even depth-1" id="comment-35628">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">sachindra pandey</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2016-07-09T15:08:41+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-35628" class="comment-time-link" itemprop="url">July 9, 2016 at 3:08 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Good for Beginner and for Interview purpose .</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-35628" onclick="return addComment.moveForm( &quot;comment-35628&quot;, &quot;35628&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to sachindra pandey">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-35572">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Ashish</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2016-07-05T04:42:40+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-35572" class="comment-time-link" itemprop="url">July 5, 2016 at 4:42 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>very nice explanation ………..</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-35572" onclick="return addComment.moveForm( &quot;comment-35572&quot;, &quot;35572&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Ashish">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-even depth-1" id="comment-33780">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Nikhil</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-12-30T01:29:10+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-33780" class="comment-time-link" itemprop="url">December 30, 2015 at 1:29 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Excellent Article for begineer</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-33780" onclick="return addComment.moveForm( &quot;comment-33780&quot;, &quot;33780&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Nikhil">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-33480">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Virender</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-11-03T19:19:30+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-33480" class="comment-time-link" itemprop="url">November 3, 2015 at 7:19 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>How an Injector is different from a factory here?</p>
+<p>An injector here is basically serving the factory pattern. I think there more to Injector patter then explained here. Do you have a follow up tutorial to explain more?</p>
+<p>Thanks<br>
+Virender</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-33480" onclick="return addComment.moveForm( &quot;comment-33480&quot;, &quot;33480&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Virender">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-even depth-1" id="comment-33315">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">EAT WORK</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-10-06T08:22:59+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-33315" class="comment-time-link" itemprop="url">October 6, 2015 at 8:22 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>I have to say there is something that I don’t understand.</p>
+<p>You claim that one way (without DI) is to provide the service in the constructor, but you say that the clients then need to decide which service to provider and this is not a good practice.</p>
+<p>But in the DI example, you do provide the service in the constructor, only that the client does not initiate the type of service</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-33315" onclick="return addComment.moveForm( &quot;comment-33315&quot;, &quot;33315&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to EAT WORK">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment odd alt depth-2" id="comment-33465">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">david won</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-10-30T13:15:06+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-33465" class="comment-time-link" itemprop="url">October 30, 2015 at 1:15 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>I agree with all you guys that the DI example does nothing better than the non-DI example.<br>
+And if something does make difference in this example, that is all credited to “interface” mechanism in java language itself.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-33465" onclick="return addComment.moveForm( &quot;comment-33465&quot;, &quot;33465&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to david won">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-33121">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Kalinga</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-09-09T06:28:01+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-33121" class="comment-time-link" itemprop="url">September 9, 2015 at 6:28 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Please put the link for the source code zip in the beginning.<br>
+That will prevent someone making copy paste to create source code files and latter realize<br>
+the entire effort has gone for toss as the source code is already shared as zip.</p>
+<p>Thanks,<br>
+Kalinga</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-33121" onclick="return addComment.moveForm( &quot;comment-33121&quot;, &quot;33121&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Kalinga">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment odd alt depth-2" id="comment-44178">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Vipin</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-08-11T11:28:38+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-44178" class="comment-time-link" itemprop="url">August 11, 2018 at 11:28 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>source code must not be provided at all. What kind of coder you are if you too lazy to write it by own and practice.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-44178" onclick="return addComment.moveForm( &quot;comment-44178&quot;, &quot;44178&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Vipin">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment even thread-even depth-1" id="comment-33040">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">passage2</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-08-25T15:34:12+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-33040" class="comment-time-link" itemprop="url">August 25, 2015 at 3:34 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Hi Pankaj,<br>
+Quick question about your example. You are saying<br>
+…<br>
+//Send email<br>
+injector = new EmailServiceInjector();<br>
+app = injector.getConsumer();<br>
+app.processMessages(msg, email);</p>
+<p>//Send SMS<br>
+injector = new SMSServiceInjector();<br>
+app = injector.getConsumer();<br>
+app.processMessages(msg, phone);</p>
+<p>As you can see that our application classes are responsible only for using the service. Service classes  are created in injectors. Also if we have to further extend our application to allow facebook messaging, we will have to write Service classes and injector classes only.</p>
+<p>So dependency injection implementation solved the problem with hard-coded dependency and helped us in making our application flexible and easy to extend. </p>
+<p>###<br>
+But this code still has a hard-coded injector that we need.<br>
+<b>injector = new EmailServiceInjector();</b></p>
+<p>My question: What is the difference between creating in my code an instance of Injector or an instance of Service? Both are hard-coded.<br>
+If I understand the DI concept correctly, to avoid hard-coded dependency, which Service to use should be resolved at run-time, no?</p>
+<p>Could you please explain.<br>
+Thanks.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-33040" onclick="return addComment.moveForm( &quot;comment-33040&quot;, &quot;33040&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to passage2">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment odd alt depth-2" id="comment-43221">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Ram Sharma</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-04-30T04:45:29+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-43221" class="comment-time-link" itemprop="url">April 30, 2018 at 4:45 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Yes, it is hardcoded, but at some point of time you have to specify which service that you want to create, whether an Email service or facebook service or Twitter service, and using DI we are not changing application class. Application class or the Consumer class only takes service as input and for each service there exist an Injector.<br>
+It is hard coded but in an intelligent way to separate the concerns.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-43221" onclick="return addComment.moveForm( &quot;comment-43221&quot;, &quot;43221&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Ram Sharma">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment even depth-3" id="comment-43533">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Ragu</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-05-30T00:24:41+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-43533" class="comment-time-link" itemprop="url">May 30, 2018 at 12:24 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>@Pankaj: Thanks for the wonderful tutorial. It is really helpfull. I’m still facing few confusions.<br>
+		May be because I’m new to this technology :). Still Thanks a lot for your effort.</p>
+<p>@Ram:</p>
+<p>Hi,:)</p>
+<p>You were right that at some point of time we have to specify which service that we want to use.<br>
+But, what I’m not understanding is</p>
+<p>In Injector class,</p>
+<p>public class EmailServiceInjector implements MessageServiceInjector {</p>
+<p>	@Override<br>
+	public Consumer getConsumer() {</p>
+<p>		//Instead of below<br>
+		return new MyDIApplication(new EmailServiceImpl());</p>
+<p>		//We can also use this (Also with method return type change)<br>
+		return new EmailServiceImpl();<br>
+	}<br>
+}</p>
+<p>As mentioned in Tutorial, for new service class (like FB message service ) only corresponding Injector need to be created.<br>
+Same is satisfied in the above approach.<br>
+So what is the point creating a consumer class which can hold all service type<br>
+and creating object of that service type and then passing required service type into it?</p>
+<p>Could you please make me understand this?</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-43533" onclick="return addComment.moveForm( &quot;comment-43533&quot;, &quot;43533&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Ragu">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-32994">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Cris</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-08-18T08:36:06+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-32994" class="comment-time-link" itemprop="url">August 18, 2015 at 8:36 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>hey, good explanation about dependency injection, but the thing that I don’t understand well is, why a injector? why not just create a specific xxxServiceImp? we can also can mock/fake that object in our test, instead create a messageInjector we can create directly a MessageService (still mock/fake) and in our app we can have also something like this:</p>
+<p>Consumer app = null;</p>
+<p>        //Send email<br>
+        app = new MessageServiceImp();<br>
+        app.processMessages(msg, email);</p>
+<p>        //Send SMS<br>
+        app = new SMSServiceImp();<br>
+        app.processMessages(msg, phone);</p>
+<p>which one is the real benefice to use that Injector clases?</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-32994" onclick="return addComment.moveForm( &quot;comment-32994&quot;, &quot;32994&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Cris">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment even depth-2" id="comment-38399">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Bret</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2017-06-16T14:23:14+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-38399" class="comment-time-link" itemprop="url">June 16, 2017 at 2:23 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Same question for me as above.  What benefit do the injector classes give you vs. above code.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-38399" onclick="return addComment.moveForm( &quot;comment-38399&quot;, &quot;38399&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Bret">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt depth-2" id="comment-42998">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Ivan</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-04-18T00:10:31+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-42998" class="comment-time-link" itemprop="url">April 18, 2018 at 12:10 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>The same question for me, I don’t know why so many people saying this example is simple, not sure what’s the purpose of Injector in this example?</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-42998" onclick="return addComment.moveForm( &quot;comment-42998&quot;, &quot;42998&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Ivan">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment even thread-even depth-1" id="comment-32991">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Sushant</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-08-18T04:20:26+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-32991" class="comment-time-link" itemprop="url">August 18, 2015 at 4:20 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Please add “Previous” and “Next” button at the end of every page.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-32991" onclick="return addComment.moveForm( &quot;comment-32991&quot;, &quot;32991&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Sushant">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-32828">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Sriprem</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-07-23T05:37:04+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-32828" class="comment-time-link" itemprop="url">July 23, 2015 at 5:37 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Have gone through so many samples but got an clear idea about DI through this article.Really helpful, good work dude.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-32828" onclick="return addComment.moveForm( &quot;comment-32828&quot;, &quot;32828&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Sriprem">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-even depth-1" id="comment-32677">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">M</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-06-23T22:23:00+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-32677" class="comment-time-link" itemprop="url">June 23, 2015 at 10:23 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>A few points to re-consider, just for the sake-of-argument:</p>
+<p>Quote:<br>
+&lt;&gt;</p>
+<p>Comment:<br>
+I think, “Testing the application” will not be difficult. The correct statement would be “Testing different scenarios” E.G. testing different messaging scenario. Testing the application itself would still be easy (without DI).</p>
+<p>Quote:<br>
+&lt;&gt;</p>
+<p>Comment:<br>
+Here is the catch. Our application classes are not only responsible for using the service. They are actually responsible for instantiating the injector classes also. Here is an explanation:</p>
+<p>MyMessageDITest -&gt; new EmailServiceInjector() -&gt; new EmailServiceImpl()<br>
+MyMessageDITest -&gt; new SMSServiceInjector() -&gt; new SMSServiceImpl()</p>
+<p>Therefore, a question can be raised (asked mostly at the interview): “Why do we need a ServiceInjector object to instantiate MessageService object? After all, we are instantiating the ServiceInjector object anyway. For two different MessageService requirement, we are creating two instances of ServiceInjector [new EmailServiceInjector() and new SMSServiceInjector()]. If we are to create a new instance of ServiceInjector, can’t we create a new instance of MessageService?”</p>
+<p>Any thoughts? Please correct me if my understanding is wrong.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-32677" onclick="return addComment.moveForm( &quot;comment-32677&quot;, &quot;32677&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to M">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-32406">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">pankaj</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-05-09T10:50:49+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-32406" class="comment-time-link" itemprop="url">May 9, 2015 at 10:50 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>very nice explanation. I have a question. Why it is a bad design to create the service in client code and pass it to the constructor of the Application. Because we are ultimately creating injector related to that service in the client code, so how it is different?</p>
+<p>Thank u</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-32406" onclick="return addComment.moveForm( &quot;comment-32406&quot;, &quot;32406&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to pankaj">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-even depth-1" id="comment-32164">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">rizwan</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-04-09T06:48:25+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-32164" class="comment-time-link" itemprop="url">April 9, 2015 at 6:48 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Sir please create pdf book of your all spring tutorial liked design patterns book.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-32164" onclick="return addComment.moveForm( &quot;comment-32164&quot;, &quot;32164&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to rizwan">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-31936">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">tester</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-03-10T06:07:43+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-31936" class="comment-time-link" itemprop="url">March 10, 2015 at 6:07 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>I don’t get it. It does not look simple at all.<br>
+Too many lines of code for this simple functionality</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-31936" onclick="return addComment.moveForm( &quot;comment-31936&quot;, &quot;31936&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to tester">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment even depth-2" id="comment-32120">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">tomboy</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-04-03T07:29:53+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-32120" class="comment-time-link" itemprop="url">April 3, 2015 at 7:29 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Tester, try to write 50 different applications that all need to send email and do it without dependency injection.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-32120" onclick="return addComment.moveForm( &quot;comment-32120&quot;, &quot;32120&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to tomboy">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment odd alt depth-3" id="comment-32425">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">George</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-05-12T18:44:38+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-32425" class="comment-time-link" itemprop="url">May 12, 2015 at 6:44 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>This is the most lucid explanation, that can actually be understood on the first read (I tried a few before settled on this one).</p>
+<p>However, I think ‘Tester’ objected to complexity of implementation of dependency injection in strictly object-oriented language:<br>
+— 1 interface<br>
+— n classes declaring that each implements that interface<br>
+— n implementations of that interface in each class<br>
+— n injector classes<br>
+— 1 application class<br>
+— 1 consumer class</p>
+<p>What is needed isn’t more classes, but better language with functions as first-class objects. In such language you don’t need dependency injection to be explained and remembered; it comes naturally.</p>
+<p>To understand why pure object-oriented languages are a dead-end all one need is to read descriptions of dependency injection. Object-oriented is useful technique – it is not a successful methodology.</p>
+<p>But I admit, talks about this or that pattern is excellent marketing tool for outsourcing companies.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-32425" onclick="return addComment.moveForm( &quot;comment-32425&quot;, &quot;32425&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to George">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment even thread-even depth-1" id="comment-31398">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Lanito</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-01-10T08:19:44+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-31398" class="comment-time-link" itemprop="url">January 10, 2015 at 8:19 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>That’s fine, but this is not mocking it is faking.<br>
+Best Regards</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-31398" onclick="return addComment.moveForm( &quot;comment-31398&quot;, &quot;31398&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Lanito">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-31387">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Rafał</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-01-09T07:56:12+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-31387" class="comment-time-link" itemprop="url">January 9, 2015 at 7:56 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Good job!<br>
+This video is also very helpful: <a href="https://www.youtube.com/watch?v=GB8k2-Egfv0" rel="nofollow">https://www.youtube.com/watch?v=GB8k2-Egfv0</a></p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-31387" onclick="return addComment.moveForm( &quot;comment-31387&quot;, &quot;31387&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Rafał">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment even depth-2" id="comment-32581">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Ayaz</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-06-08T07:19:18+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-32581" class="comment-time-link" itemprop="url">June 8, 2015 at 7:19 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>I would say the video tutorial is a perfect and easiest explaination. It is easiest because we use a framework which simplifies lots of stuff.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-32581" onclick="return addComment.moveForm( &quot;comment-32581&quot;, &quot;32581&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Ayaz">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-31144">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">AJ</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2014-12-16T19:16:31+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-31144" class="comment-time-link" itemprop="url">December 16, 2014 at 7:16 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Job very well done. I am an experienced developer, but I was always confused about Dependency Injection pattern. Your example is simple and well-communicated, it now totally makes sense. Thanks. I have already subscribed to your mailing list and just downloaded your eBook – thanks for the hard work you put in.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-31144" onclick="return addComment.moveForm( &quot;comment-31144&quot;, &quot;31144&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to AJ">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-31096">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">theodore</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2014-12-11T07:23:59+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-31096" class="comment-time-link" itemprop="url">December 11, 2014 at 7:23 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Dude thanks for your time. Very nice tut and good explained! Greetings from Greece!</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-31096" onclick="return addComment.moveForm( &quot;comment-31096&quot;, &quot;31096&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to theodore">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-30851">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name"><a href="http://www.techproceed.com/" class="comment-author-link" rel="external nofollow" itemprop="url">Snehal Masne</a></span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2014-11-27T03:29:35+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-30851" class="comment-time-link" itemprop="url">November 27, 2014 at 3:29 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Excellent tutorial for DI with simple example, exactly what one expects at the beginging. Keep it up.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-30851" onclick="return addComment.moveForm( &quot;comment-30851&quot;, &quot;30851&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Snehal Masne">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-30042">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Calderas</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2014-09-04T20:47:25+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-30042" class="comment-time-link" itemprop="url">September 4, 2014 at 8:47 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Another Thanks from Mexico.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-30042" onclick="return addComment.moveForm( &quot;comment-30042&quot;, &quot;30042&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Calderas">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-29963">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Shashi Kanth</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2014-08-31T15:49:03+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-29963" class="comment-time-link" itemprop="url">August 31, 2014 at 3:49 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Thank you for your effort.<br>
+A very concise and neatly explained article indeed.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-29963" onclick="return addComment.moveForm( &quot;comment-29963&quot;, &quot;29963&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Shashi Kanth">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-29909">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Vijay</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2014-08-26T07:27:54+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-29909" class="comment-time-link" itemprop="url">August 26, 2014 at 7:27 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Nice Article !</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-29909" onclick="return addComment.moveForm( &quot;comment-29909&quot;, &quot;29909&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Vijay">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-29891">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Ahmed Kamal</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2014-08-23T10:58:23+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-29891" class="comment-time-link" itemprop="url">August 23, 2014 at 10:58 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Good and clear article. Thanks Pankaj for your great efforts.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-29891" onclick="return addComment.moveForm( &quot;comment-29891&quot;, &quot;29891&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Ahmed Kamal">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-29880">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Mustapha Naciri</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2014-08-22T02:38:43+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-29880" class="comment-time-link" itemprop="url">August 22, 2014 at 2:38 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Thank’ you very much for teach us your big knowledge in java</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-29880" onclick="return addComment.moveForm( &quot;comment-29880&quot;, &quot;29880&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Mustapha Naciri">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-29637">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Thanga</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2014-07-29T21:34:13+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-29637" class="comment-time-link" itemprop="url">July 29, 2014 at 9:34 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Well explained.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#comment-29637" onclick="return addComment.moveForm( &quot;comment-29637&quot;, &quot;29637&quot;, &quot;respond&quot;, &quot;2394&quot; )" aria-label="Reply to Thanga">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ol></div>	<div class="comment-policy-box">
+		<p class="comment-policy"><small><strong>Comment Policy:</strong>Please submit comments to add value to the post. Comments like "Thank You" and "Awesome Post" will be not published. If you want to post code then wrap them inside &lt;pre&gt; tags. For example <strong>&lt;pre&gt;class Foo { }&lt;/pre&gt;</strong>.<br>If you want to post XML content, then please escape &lt; with &amp;lt; and &gt; with &amp;gt; otherwise they will not be shown properly.</small></p>
+	</div>
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#respond" style="display:none;">Cancel reply</a></small></h3>			<form action="https://www.journaldev.com/wp-comments-post.php" method="post" id="commentform" class="comment-form anti-spam-form-processed" novalidate="">
+				<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p><p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p><p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" required="required"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="email" value="" size="30" maxlength="100" aria-describedby="email-notes" required="required"></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="2394" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p>
+<!-- Anti-spam plugin v.5.2 wordpress.org/plugins/anti-spam/ -->
+		<p class="antispam-group antispam-group-q" style="clear: both; display: none;">
+			<label>Current ye@r <span class="required">*</span></label>
+			<input type="hidden" name="antspm-a" class="antispam-control antispam-control-a" value="2018">
+			<input type="text" name="antspm-q" class="antispam-control antispam-control-q" value="5.2" autocomplete="off">
+		</p>
+		<p class="antispam-group antispam-group-e" style="display: none;">
+			<label>Leave this field empty</label>
+			<input type="text" name="antspm-e-email-url-website" class="antispam-control antispam-control-e" value="" autocomplete="off">
+		</p>
+			<input type="hidden" name="antspm-d" class="antispam-control antispam-control-d" value="2018"></form>
+			</div><!-- #respond -->
+	</main><aside class="sidebar sidebar-primary widget-area q2w3-fixed-widget-container" role="complementary" aria-label="Primary Sidebar" itemscope="" itemtype="https://schema.org/WPSideBar" style="height: 1705px;"><section id="search-3" class="widget widget_search"><div class="widget-wrap"><div id="ajaxsearchlite1" class="wpdreams_asl_container asl_w asl_m asl_m_1">
+<div class="probox">
+
+    
+    <div class="promagnifier">
+                <div class="innericon">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+                <path id="magnifier-2-icon" d="M460.355,421.59L353.844,315.078c20.041-27.553,31.885-61.437,31.885-98.037
+                    C385.729,124.934,310.793,50,218.686,50C126.58,50,51.645,124.934,51.645,217.041c0,92.106,74.936,167.041,167.041,167.041
+                    c34.912,0,67.352-10.773,94.184-29.158L419.945,462L460.355,421.59z M100.631,217.041c0-65.096,52.959-118.056,118.055-118.056
+                    c65.098,0,118.057,52.959,118.057,118.056c0,65.096-52.959,118.056-118.057,118.056C153.59,335.097,100.631,282.137,100.631,217.041
+                    z"></path>
+            </svg>
+        </div>
+    </div>
+
+    
+    
+    <div class="prosettings" style="display:none;" data-opened="0">
+                <div class="innericon">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+                <polygon id="arrow-25-icon" transform="rotate(90 256 256)" points="142.332,104.886 197.48,50 402.5,256 197.48,462 142.332,407.113 292.727,256 "></polygon>
+            </svg>
+        </div>
+    </div>
+
+    
+    
+    <div class="proinput">
+        <form autocomplete="off" aria-label="Ajax search form">
+            <input aria-label="Search input" type="search" class="orig" name="phrase" placeholder="Instantly Search Tutorials..." value="" autocomplete="off">
+            <input aria-label="Autocomplete input, do not use this" type="text" class="autocomplete" name="phrase" value="" autocomplete="off">
+            <span class="loading"></span>
+            <input type="submit" value="Start search" style="width:0; height: 0; visibility: hidden;">
+        </form>
+    </div>
+
+    
+    
+    <div class="proloading">
+
+        <div class="asl_loader"><div class="asl_loader-inner asl_simple-circle"></div></div>
+
+            </div>
+
+            <div class="proclose">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+            <polygon id="x-mark-icon" points="438.393,374.595 319.757,255.977 438.378,137.348 374.595,73.607 255.995,192.225 137.375,73.622 73.607,137.352 192.246,255.983 73.622,374.625 137.352,438.393 256.002,319.734 374.652,438.378 "></polygon>
+        </svg>
+        </div>
+    
+    
+</div>
+</div>
+
+
+
+
+
+
+    <div id="asl_hidden_data">
+        <svg style="position:absolute" height="0" width="0">
+            <filter id="aslblur">
+                <fegaussianblur in="SourceGraphic" stdDeviation="4"></fegaussianblur>
+            </filter>
+        </svg>
+        <svg style="position:absolute" height="0" width="0">
+            <filter id="no_aslblur"></filter>
+        </svg>
+
+    </div>
+
+<div class="asl_init_data wpdreams_asl_data_ct" style="display:none !important;" id="asl_init_id_1" data-asldata="ew0KICAgICJob21ldXJsIjogImh0dHBzOi8vd3d3LmpvdXJuYWxkZXYuY29tLyIsDQogICAgInJlc3VsdHN0eXBlIjogInZlcnRpY2FsIiwNCiAgICAicmVzdWx0c3Bvc2l0aW9uIjogImhvdmVyIiwNCiAgICAiaXRlbXNjb3VudCI6IDQsDQogICAgImltYWdld2lkdGgiOiA3MCwNCiAgICAiaW1hZ2VoZWlnaHQiOiA3MCwNCiAgICAicmVzdWx0aXRlbWhlaWdodCI6ICI3MHB4IiwNCiAgICAic2hvd2F1dGhvciI6IDAsDQogICAgInNob3dkYXRlIjogMCwNCiAgICAic2hvd2Rlc2NyaXB0aW9uIjogMCwNCiAgICAiY2hhcmNvdW50IjogIDMsDQogICAgImRlZmF1bHRJbWFnZSI6ICJodHRwczovL3d3dy5qb3VybmFsZGV2LmNvbS93cC1jb250ZW50L3VwbG9hZHMvMjAxOC8xMC83MHg3MC5wbmciLA0KICAgICJoaWdobGlnaHQiOiAwLA0KICAgICJoaWdobGlnaHR3aG9sZXdvcmRzIjogMSwNCiAgICAic2Nyb2xsVG9SZXN1bHRzIjogMCwNCiAgICAicmVzdWx0YXJlYWNsaWNrYWJsZSI6IDEsDQogICAgImF1dG9jb21wbGV0ZSI6IHsNCiAgICAgICAgImVuYWJsZWQiIDogMSwNCiAgICAgICAgImxhbmciIDogImVuIg0KICAgIH0sDQogICAgInRyaWdnZXJvbnR5cGUiOiAxLA0KICAgICJ0cmlnZ2VyX29uX2NsaWNrIjogMCwNCiAgICAidHJpZ2dlcl9vbl9mYWNldF9jaGFuZ2UiOiAxLA0KICAgICJzZXR0aW5nc2ltYWdlcG9zIjogInJpZ2h0IiwNCiAgICAiaHJlc3VsdGFuaW1hdGlvbiI6ICJmeC1ub25lIiwNCiAgICAidnJlc3VsdGFuaW1hdGlvbiI6ICJmeC1ub25lIiwNCiAgICAiaHJlc3VsdGhpZGVkZXNjIjogIjEiLA0KICAgICJwcmVzY29udGFpbmVyaGVpZ2h0IjogIjQwMHB4IiwNCiAgICAicHNob3dzdWJ0aXRsZSI6ICIwIiwNCiAgICAicHNob3dkZXNjIjogIjEiLA0KICAgICJjbG9zZU9uRG9jQ2xpY2siOiAxLA0KICAgICJpaWZOb0ltYWdlIjogImRlc2NyaXB0aW9uIiwNCiAgICAiaWlSb3dzIjogMiwNCiAgICAiaWl0ZW1zV2lkdGgiOiAyMDAsDQogICAgImlpdGVtc0hlaWdodCI6IDIwMCwNCiAgICAiaWlzaG93T3ZlcmxheSI6IDEsDQogICAgImlpYmx1ck92ZXJsYXkiOiAxLA0KICAgICJpaWhpZGVDb250ZW50IjogMSwNCiAgICAiaWlhbmltYXRpb24iOiAiMSIsDQogICAgImFuYWx5dGljcyI6IDAsDQogICAgImFuYWx5dGljc1N0cmluZyI6ICIiLA0KICAgICJyZWRpcmVjdG9uY2xpY2siOiAxLA0KICAgICJyZWRpcmVjdENsaWNrVG8iOiAicmVzdWx0c19wYWdlIiwNCiAgICAicmVkaXJlY3RDbGlja0xvYyI6ICJzYW1lIiwNCiAgICAicmVkaXJlY3Rfb25fZW50ZXIiOiAxLA0KICAgICJyZWRpcmVjdEVudGVyVG8iOiAicmVzdWx0c19wYWdlIiwNCiAgICAicmVkaXJlY3RFbnRlckxvYyI6ICJzYW1lIiwNCiAgICAicmVkaXJlY3RfdXJsIjogIj9zPXtwaHJhc2V9IiwNCiAgICAib3ZlcnJpZGV3cGRlZmF1bHQiOiAwLA0KICAgICJvdmVycmlkZV9tZXRob2QiOiAiZ2V0Ig0KfQ0K"></div>
+</div></section>
+
+<!-- Quick Adsense Wordpress Plugin: http://quickadsense.com/ -->
+<section id="adswidget6-quick-adsense-2" class="widget widget_adswidget6-quick-adsense"><div class="widget-wrap"><!-- /8491498/journaldev_video -->
+<div id="div-gpt-ad-1539114023134-0">
+<script>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1539114023134-0'); });
+</script>
+</div></div></section>
+
+<!-- Quick Adsense Wordpress Plugin: http://quickadsense.com/ -->
+<section id="adswidget9-quick-adsense-3" class="widget widget_adswidget9-quick-adsense"><div class="widget-wrap"><!-- 300x250/300x600/160x600 -->
+<div id="waldo-tag-2282" data-processed="true"><script type="text/javascript">googletag.cmd.push(function() { googletag.display('waldo-tag-2282'); });</script></div></div></section>
+<section id="text-2" class="widget widget_text"><div class="widget-wrap"><h4 class="widget-title widgettitle">Design Patterns Tutorial</h4>
+			<div class="textwidget"><ul>
+<h4><a href="https://www.journaldev.com/1827/java-design-patterns-example-tutorial" target="_blank">Java Design Patterns</a></h4>
+<h4>Creational Design Patterns</h4>
+<li><a href="https://www.journaldev.com/1377/java-singleton-design-pattern-best-practices-examples" target="_blank">Singleton</a></li>
+<li><a href="https://www.journaldev.com/1392/factory-design-pattern-in-java" target="_blank">Factory</a></li>
+<li><a href="https://www.journaldev.com/1418/abstract-factory-design-pattern-in-java" target="_blank">Abstract Factory</a></li>
+<li><a href="https://www.journaldev.com/1425/builder-design-pattern-in-java" target="_blank">Builder</a></li>
+<li><a href="https://www.journaldev.com/1440/prototype-design-pattern-in-java" target="_blank">Prototype</a></li>
+<h4>Structural Design Patterns</h4>
+<li><a href="https://www.journaldev.com/1487/adapter-design-pattern-java" target="_blank">Adapter</a></li>
+<li><a href="https://www.journaldev.com/1535/composite-design-pattern-in-java" target="_blank">Composite</a></li>
+<li><a href="https://www.journaldev.com/1572/proxy-design-pattern" target="_blank">Proxy</a></li>
+<li><a href="https://www.journaldev.com/1562/flyweight-design-pattern-java" target="_blank">Flyweight</a></li>
+<li><a href="https://www.journaldev.com/1557/facade-design-pattern-in-java" target="_blank">Facade</a></li>
+<li><a href="https://www.journaldev.com/1491/bridge-design-pattern-java" target="_blank">Bridge</a></li>
+<li><a href="https://www.journaldev.com/1540/decorator-design-pattern-in-java-example" target="_blank">Decorator</a></li>
+<h4>Behavioral Design Patterns</h4>
+<li><a href="https://www.journaldev.com/1763/template-method-design-pattern-in-java" target="_blank">Template Method</a></li>
+<li><a href="https://www.journaldev.com/1730/mediator-design-pattern-in-java-example-tutorial" target="_blank">Mediator</a></li>
+<li><a href="https://www.journaldev.com/1617/chain-of-responsibility-design-pattern-in-java" target="_blank">Chain of Responsibility</a></li>
+<li><a href="https://www.journaldev.com/1739/observer-design-pattern-in-java" target="_blank">Observer</a></li>
+<li><a href="https://www.journaldev.com/1754/strategy-design-pattern-in-java-example-tutorial" target="_blank">Strategy</a></li>
+<li><a href="https://www.journaldev.com/1624/command-design-pattern" target="_blank">Command</a></li>
+<li><a href="https://www.journaldev.com/1751/state-design-pattern-java" target="_blank">State</a></li>
+<li><a href="https://www.journaldev.com/1769/visitor-design-pattern-java" target="_blank">Visitor</a></li>
+<li><a href="https://www.journaldev.com/1635/interpreter-design-pattern-java" target="_blank">Interpreter</a></li>
+<li><a href="https://www.journaldev.com/1716/iterator-design-pattern-java" target="_blank">Iterator</a></li>
+<li><a href="https://www.journaldev.com/1734/memento-design-pattern-java" target="_blank">Memento</a></li>
+<h4>Miscellaneous Design Patterns</h4>
+<li><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial" target="_blank">Dependency Injection</a></li>
+<li><a href="https://www.journaldev.com/171/thread-safety-in-java-singleton-classes-with-example-code" target="_blank">Thread Safety in Java Singleton</a></li>
+</ul>
+</div>
+		</div></section>
+<section id="text-11" class="widget widget_text"><div class="widget-wrap"><h4 class="widget-title widgettitle">Recommended Tutorials</h4>
+			<div class="textwidget"><h4>Java Tutorials</h4>
+<ul>
+<li><a href="https://www.journaldev.com/942/java-io-tutorial" target="_blank">Java IO</a></li>
+<li><a href="https://www.journaldev.com/634/regular-expression-in-java-regex-example" target="_blank">Java Regular Expressions</a></li>
+<li><a href="https://www.journaldev.com/1079/multithreading-in-java" target="_blank">Multithreading in Java</a></li>
+<li><a href="https://www.journaldev.com/977/java-logging-api-tutorial-examples-logger-levels-handlers-formatters-filters" target="_blank">Java Logging</a></li>
+<li><a href="https://www.journaldev.com/721/java-annotations-example-tutorial" target="_blank">Java Annotations</a></li>
+<li><a href="https://www.journaldev.com/1240/java-xml-tutorial" target="_blank">Java XML</a></li>
+<li><a href="https://www.journaldev.com/1260/collections-in-java-tutorial" target="_blank">Collections in Java</a></li>
+<li><a href="https://www.journaldev.com/1663/java-generics-example-method-class-interface" target="_blank">Java Generics</a></li>
+<li><a href="https://www.journaldev.com/1696/exception-handling-in-java" target="_blank">Exception Handling in Java</a></li>
+<li><a href="https://www.journaldev.com/1789/java-reflection-example-tutorial" target="_blank">Java Reflection</a></li>
+<li><a href="https://www.journaldev.com/1827/java-design-patterns-example-tutorial" target="_blank">Java Design Patterns</a></li>
+<li><a href="https://www.journaldev.com/2681/jdbc-tutorial-with-example-projects-datasource-jndi-and-spring-integration" target="_blank">JDBC Tutorial</a></li>
+<h4>Java EE Tutorials</h4>
+<li><a href="https://www.journaldev.com/2114/servlet-jsp-tutorial" target="_blank">Servlet JSP Tutorial</a></li>
+<li><a href="https://www.journaldev.com/2310/struts2-tutorial-with-example-projects" target="_blank">Struts2 Tutorial</a></li>
+<li><a href="https://www.journaldev.com/2888/spring-tutorial-spring-core-tutorial" target="_blank">Spring Tutorial</a></li>
+<li><a href="https://www.journaldev.com/3793/hibernate-tutorial" target="_blank">Hibernate Tutorial</a></li>
+<li><a href="https://www.journaldev.com/5516/primefaces-tutorial-with-example-projects" target="_blank">Primefaces Tutorial</a></li>
+<li><a href="https://www.journaldev.com/255/axis2-web-services-tutorial" target="_blank">Apache Axis 2</a></li>
+<li><a href="https://www.journaldev.com/498/jax-rs-restful-web-service-using-jersey-example-tutorial" target="_blank">JAX-RS</a></li>
+<li><a href="https://www.journaldev.com/1117/memcached-tutorial" target="_blank">Memcached Tutorial</a></li>
+</ul>
+</div>
+		</div></section>
+
+<!-- Quick Adsense Wordpress Plugin: http://quickadsense.com/ -->
+<section id="adswidget10-quick-adsense-2_clone" class="widget widget_adswidget10-quick-adsense q2w3-widget-clone-sidebar" style="top: 10px; width: 359px; height: 0px; visibility: hidden;"></section><section id="adswidget10-quick-adsense-2" class="widget widget_adswidget10-quick-adsense" style="top: 10px; width: 359px; position: fixed;"><div class="widget-wrap"><!-- 300x250/300x600/160x600 -->
+<div id="waldo-tag-2283" data-processed="true"><script type="text/javascript">googletag.cmd.push(function() { googletag.display('waldo-tag-2283'); });</script></div></div></section>
+</aside></div></div><footer class="site-footer" itemscope="" itemtype="https://schema.org/WPFooter"><div class="wrap"><p>©&nbsp;2018 · <a href="https://www.journaldev.com/privacy-policy">Privacy Policy</a> · Powered by <a href="https://wordpress.org/" title="WordPress">WordPress</a></p></div></footer></div>
+<script type="text/javascript">
+    function _dmBootstrap(file) {
+        var _dma = document.createElement('script');
+        _dma.type = 'text/javascript';
+        _dma.async = true;
+        _dma.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + file;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(_dma);
+    }
+    function _dmFollowup(file) { if (typeof DMAds === 'undefined') _dmBootstrap('cdn2.DeveloperMedia.com/a.min.js'); }
+    (function () { _dmBootstrap('cdn1.DeveloperMedia.com/a.min.js'); setTimeout(_dmFollowup, 2000); })();
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-12171637-4', { 'anonymize_ip': true });
+</script>
+	<script src="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/highlight.min.js.download"></script>
+	<script>
+		jQuery(document).ready(function() {
+		  jQuery('pre code').each(function(i, block) {
+			hljs.highlightBlock(block);
+			$(".entry-content pre").show();
+		  });
+		  	
+			jQuery('.entry-content pre code').mouseenter(function(e){
+				var t = jQuery(this);
+					t.children(".re_clip-board").slideDown(100);
+				jQuery(e.target).mouseleave(function(){
+					t.children(".re_clip-board").slideUp(100);
+					
+					setTimeout(function() {
+						t.children(".re_clip-board").text("Copy");
+					}, 100);
+					
+				});
+			});
+			
+			jQuery('.entry-content pre code .re_clip-board').click(function(e){
+				re_copyToClipboard(jQuery(this));
+				$(this).text("Copied!");
+				$(this).css("width", "85px");
+			});
+		});
+		
+function re_copyToClipboard(element) {
+	var elements = element.parent();
+  	var $temp = $("<textarea>");
+  	$("body").append($temp);
+	var text = $(elements).text().replace(/Copy/g, "");
+  	$temp.val(text).select();
+  	document.execCommand("copy");
+  	$temp.remove();
+}
+
+/*Starting expand widget jquery codes */
+var rotation = 0;
+jQuery.fn.plus_rotate = function(degrees) {
+    $(this).css({"-webkit-transform" : "rotate("+ degrees +"deg)",
+                 "-moz-transform" : "rotate("+ degrees +"deg)",
+                 "-ms-transform" : "rotate("+ degrees +"deg)",
+                 "transform" : "rotate("+ degrees +"deg)"});
+    return $(this);
+};
+
+$(document).ready(function(){
+  $(".expand_widget_title").click(function(){
+    if ( !$(this).parent().children("ul").is(":visible") ) {
+      rotation += 360;
+	  $(this).children(".widget_plus_icon").removeClass("zero_six_rotate");
+      $(this).children(".widget_plus_icon").addClass("tree_six_rotate");
+     $(this).parent().children("ul").slideDown(390);
+	 
+	 var t = $(this);
+	 setTimeout(function() {
+	 	t.children(".widget_plus_icon").removeClass("plus_icon");
+		t.children(".widget_plus_icon").addClass("minus_icon");
+	 }, 400);
+  } else {
+    rotation -= 360;
+     	$(this).children(".widget_plus_icon").removeClass("tree_six_rotate");
+		$(this).children(".widget_plus_icon").addClass("zero_six_rotate");
+    $(this).parent().children("ul").slideUp(390);
+	
+	var t = $(this);
+	 setTimeout(function() {
+	 	t.children(".widget_plus_icon").removeClass("minus_icon");
+		t.children(".widget_plus_icon").addClass("plus_icon");
+	 }, 400);
+  }
+  });
+ });
+
+/*Ending expand widget jquery codes */
+
+</script>
+	<script type="text/javascript" src="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/anti-spam-5.2.js.download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var tocplus = {"smooth_scroll":"1","visibility_show":"show","visibility_hide":"hide","width":"Auto","smooth_scroll_offset":"60"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/front.min.js.download"></script>
+<script type="text/javascript" src="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/comment-reply.min.js.download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var ajaxsearchlite = {"ajaxurl":"https:\/\/www.journaldev.com\/wp-admin\/admin-ajax.php","backend_ajaxurl":"https:\/\/www.journaldev.com\/wp-admin\/admin-ajax.php","js_scope":"jQuery"};
+var ASL = {"ajaxurl":"https:\/\/www.journaldev.com\/wp-admin\/admin-ajax.php","backend_ajaxurl":"https:\/\/www.journaldev.com\/wp-admin\/admin-ajax.php","js_scope":"jQuery","detect_ajax":"0","scrollbar":"1","js_retain_popstate":"0","version":"4728"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/jquery.ajaxsearchlite.min.js.download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var q2w3_sidebar_options = [{"sidebar":"sidebar","margin_top":10,"margin_bottom":0,"stop_id":"","screen_max_width":1024,"screen_max_height":120,"width_inherit":false,"refresh_interval":1500,"window_load_hook":false,"disable_mo_api":false,"widgets":["adswidget10-quick-adsense-2"]}];
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/q2w3-fixed-widget.min.js.download"></script>
+<script type="text/javascript" src="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/wp-embed.min.js.download"></script>
+<script src="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/lazyload.js.download"></script>
+
+<!-- Page generated by LiteSpeed Cache 2.6.4.1 on 2018-11-01 05:29:18 --><div id="ajaxsearchlitesettings1" class="searchsettings wpdreams_asl_settings asl_w asl_s asl_s_1 asl_an_fadeOutDrop" style="animation-duration: 300ms; visibility: hidden; opacity: 0; display: none;">
+    <form name="options" autocomplete="off">
+
+        
+                <fieldset class="asl_sett_scroll">
+            <legend style="display: none;">Generic selectors</legend>
+            <div class="asl_option_inner hiddend">
+                <input type="hidden" name="qtranslate_lang" id="qtranslate_lang" value="0">
+            </div>
+
+	        
+            
+            <div class="asl_option">
+                <div class="asl_option_inner">
+                    <input type="checkbox" value="checked" id="set_exactonly1" title="Exact matches only" name="set_exactonly">
+                    <label for="set_exactonly1">Exact matches only</label>
+                </div>
+                <div class="asl_option_label">
+                    Exact matches only                </div>
+            </div>
+            <div class="asl_option">
+                <div class="asl_option_inner">
+                    <input type="checkbox" value="None" id="set_intitle1" title="Search in title" name="set_intitle" checked="checked">
+                    <label for="set_intitle1">Search in title</label>
+                </div>
+                <div class="asl_option_label">
+                    Search in title                </div>
+            </div>
+            <div class="asl_option">
+                <div class="asl_option_inner">
+                    <input type="checkbox" value="None" id="set_incontent1" title="Search in content" name="set_incontent" checked="checked">
+                    <label for="set_incontent1">Search in content</label>
+                </div>
+                <div class="asl_option_label">
+                    Search in content                </div>
+            </div>
+            <div class="asl_option_inner hiddend">
+                <input type="checkbox" value="None" id="set_inexcerpt1" title="Search in excerpt" name="set_inexcerpt" checked="checked">
+                <label for="set_inexcerpt1">Search in excerpt</label>
+            </div>
+
+            <div class="asl_option">
+                <div class="asl_option_inner">
+                    <input type="checkbox" value="None" id="set_inposts1" title="Search in posts" name="set_inposts" checked="checked">
+                    <label for="set_inposts1">Search in posts</label>
+                </div>
+                <div class="asl_option_label">
+                    Search in posts                </div>
+            </div>
+            <div class="asl_option asl-o-last">
+                <div class="asl_option_inner">
+                    <input type="checkbox" value="None" id="set_inpages1" title="Search in pages" name="set_inpages" checked="checked">
+                    <label for="set_inpages1">Search in pages</label>
+                </div>
+                <div class="asl_option_label">
+                    Search in pages                </div>
+            </div>
+                    </fieldset>
+                    </form>
+</div><div id="ajaxsearchliteres1" class="vertical wpdreams_asl_results asl_w asl_r asl_r_1" style="animation-duration: 300ms; opacity: 0;">
+
+    
+    <div class="results mCustScr _mCSap_1 mCS_no_scrollbar"><div id="mCSBap_1" class="mCustomScrollBox mCS-light mCSBap_vertical mCSBap_inside" style="max-height: 0px;" tabindex="0"><div id="mCSBap_1_container" class="mCSBap_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+
+        
+            <div class="resdrg">
+            </div>
+
+        
+    </div><div id="mCSBap_1_scrollbar_vertical" class="mCSBap_scrollTools mCSBap_1_scrollbar mCS-light mCSBap_scrollTools_vertical" style="display: none;"><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#" class="mCSBap_buttonUp">Scroll up the results</a><div class="mCSBap_draggerContainer"><div id="mCSBap_1_dragger_vertical" class="mCSBap_dragger" style="position: absolute; min-height: 30px; top: 0px;"><div class="mCSBap_dragger_bar" style="line-height: 30px;"></div></div><div class="mCSBap_draggerRail"></div></div><a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#" class="mCSBap_buttonDown">Scroll down the results</a></div></div></div>
+
+    
+    
+</div><div id="onesignal-bell-container" class="onesignal-bell-container onesignal-reset onesignal-bell-container-bottom-left"><div id="onesignal-bell-launcher" class="onesignal-bell-launcher onesignal-bell-launcher-md onesignal-bell-launcher-bottom-left onesignal-bell-launcher-theme-default onesignal-bell-launcher-active"><div class="onesignal-bell-launcher-button"><svg class="onesignal-bell-svg" xmlns="http://www.w3.org/2000/svg" width="99.7" height="99.7" viewBox="0 0 99.7 99.7" style="filter: drop-shadow(0 2px 4px rgba(34,36,38,0.35));; -webkit-filter: drop-shadow(0 2px 4px rgba(34,36,38,0.35));;"><circle class="background" cx="49.9" cy="49.9" r="49.9" style=""></circle><path class="foreground" d="M50.1 66.2H27.7s-2-.2-2-2.1c0-1.9 1.7-2 1.7-2s6.7-3.2 6.7-5.5S33 52.7 33 43.3s6-16.6 13.2-16.6c0 0 1-2.4 3.9-2.4 2.8 0 3.8 2.4 3.8 2.4 7.2 0 13.2 7.2 13.2 16.6s-1 11-1 13.3c0 2.3 6.7 5.5 6.7 5.5s1.7.1 1.7 2c0 1.8-2.1 2.1-2.1 2.1H50.1zm-7.2 2.3h14.5s-1 6.3-7.2 6.3-7.3-6.3-7.3-6.3z" style=""></path><ellipse class="stroke" cx="49.9" cy="49.9" rx="37.4" ry="36.9" style=""></ellipse></svg></div><div class="onesignal-bell-launcher-badge" style="filter: drop-shadow(0 2px 4px rgba(34,36,38,0));; -webkit-filter: drop-shadow(0 2px 4px rgba(34,36,38,0));;"></div><div class="onesignal-bell-launcher-message"><div class="onesignal-bell-launcher-message-body">You've blocked notifications</div></div><div class="onesignal-bell-launcher-dialog" style="filter: drop-shadow(0px 2px 2px rgba(34,36,38,.15));; -webkit-filter: drop-shadow(0px 2px 2px rgba(34,36,38,.15));;"><div class="onesignal-bell-launcher-dialog-body"></div></div></div></div><iframe src="./Java Dependency Injection - DI Design Pattern Example Tutorial - JournalDev_files/webPushAnalytics.html" style="display: none;"></iframe></body></html>
